@@ -15,9 +15,9 @@ class InterfaceController: WKInterfaceController {
     var value = 0.0
     var sign = 1.0
     enum Mode {
-        case Operator,Operand
+        case Operator,Operand,CalcOperand
     }
-    var mode = Mode.Operator
+    var mode = Mode.Operand
     var operand = "0"
     var valueStack : [Double] = []
     var operatorStack : [String] = []
@@ -61,11 +61,30 @@ class InterfaceController: WKInterfaceController {
 
     func buttonPressed(button: String) {
         switch button {
+        case "1/x":
+            fallthrough
+        case "√":
+            if mode == .Operand {
+                self.pushValue()
+            } else if mode == .Operator {
+                operatorStack.removeLast()
+            }
+            self.executeFunction(button)
+            mode = .CalcOperand
+            if let lastValue = valueStack.last {
+                operand = "\(lastValue)"
+            }
         case "0"..."9",".":
-            if mode == .Operator {
+            if mode != .Operand {
                 operand = ""
                 sign = 1
+                if mode == .CalcOperand && valueStack.count > 0 {
+                    valueStack.removeLast()
+                }
                 mode = .Operand
+            }
+            while valueStack.count > 0 && isnan(valueStack.last!) {
+                valueStack.removeLast()
             }
             operand += button
             while operand.hasPrefix("0") && operand.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 1 {
@@ -83,26 +102,31 @@ class InterfaceController: WKInterfaceController {
         case "C":
             if operand != "0" && operand.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
                 operand = "0"
+                sign = 1
             } else {
                 valueStack = []
                 operatorStack = []
             }
+            mode = .Operand
         case "=":
-            value = atof(operand.cStringUsingEncoding(NSUTF8StringEncoding)!)
-            valueStack.extend([value])
+            if mode == .Operand {
+                self.pushValue()
+            }
             self.popStack()
             let result = valueStack.removeAtIndex(0)
             operand = "\(result)"
             valueStack = [result]
             operatorStack = []
             sign = 1
+            mode = .CalcOperand
         default:
             if mode == .Operator {
                 operatorStack.removeAtIndex(0)
             } else {
+                if mode == .Operand {
+                    self.pushValue()
+                }
                 mode = .Operator
-                value = atof(operand.cStringUsingEncoding(NSUTF8StringEncoding)!)
-                valueStack.extend([value])
             }
             popStack(lastOp: button)
             operatorStack.extend([button])
@@ -111,6 +135,26 @@ class InterfaceController: WKInterfaceController {
             }
         }
         valueLabel?.setText(operand)
+    }
+
+    func pushValue()
+    {
+        value = atof(operand.cStringUsingEncoding(NSUTF8StringEncoding)!)
+        valueStack.extend([value])
+    }
+
+    func executeFunction(var operation : String)
+    {
+        var value = valueStack.removeLast()
+        switch operation {
+        case "1/x":
+            value = 1 / value
+        case "√":
+            value = sqrt(value)
+        default:
+            break
+        }
+        valueStack.extend([value])
     }
 
     func popStack(var lastOp : String? = nil)
