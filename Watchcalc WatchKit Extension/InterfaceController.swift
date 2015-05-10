@@ -21,7 +21,7 @@ class InterfaceController: WKInterfaceController {
     var operand = "0"
     var valueStack : [Double] = []
     var operatorStack : [String] = []
-    let precedences = ["+":0,"-":0,"✕":1,"÷":1]
+    let precedences = ["+":0,"-":0,"✕":1,"÷":1,"xⁿ":2]
     weak var valueLabel : WKInterfaceLabel?
 
     var keyBindings : [[String]]!
@@ -66,6 +66,36 @@ class InterfaceController: WKInterfaceController {
         case "1/x":
             fallthrough
         case "√":
+            fallthrough
+        case "sin":
+            fallthrough
+        case "cos":
+            fallthrough
+        case "tan":
+            fallthrough
+        case "lnx":
+            fallthrough
+        case "log":
+            fallthrough
+        case "π":
+            fallthrough
+        case "eⁿ":
+            fallthrough
+        case "lnx":
+            fallthrough
+        case "log":
+            fallthrough
+        case "x²":
+            fallthrough
+        case "x³":
+            fallthrough
+        case "∛":
+            fallthrough
+        case "rnd":
+            fallthrough
+        case "x!":
+            fallthrough
+        case "e":
             if mode == .Operand {
                 self.pushValue()
             } else if mode == .Operator {
@@ -150,13 +180,48 @@ class InterfaceController: WKInterfaceController {
         var value = valueStack.removeLast()
         switch operation {
         case "1/x":
-            value = 1 / value
+            value = 1/value
         case "√":
             value = sqrt(value)
+        case "sin":
+            value = sin(value)
+        case "cos":
+            value = cos(value)
+        case "tan":
+            value = tan(value)
+        case "lnx":
+            value = log(value)
+        case "log":
+            value = log10(value)
+        case "π":
+            value = M_PI
+        case "eⁿ":
+            value = exp(value)
+        case "x²":
+            value = value * value
+        case "x³":
+            value = value * value * value
+        case "∛":
+            value = pow(value, 1.0/3.0)
+        case "rnd":
+            value = drand48()
+        case "x!":
+            value = fact(value)
+        case "e":
+            value = M_E
         default:
             break
         }
         valueStack.extend([value])
+    }
+
+    func fact(value : Double) -> Double
+    {
+        if value <= 1 {
+            return 1
+        } else {
+            return value * fact(value - 1)
+        }
     }
 
     func popStack(var lastOp : String? = nil)
@@ -192,6 +257,8 @@ class InterfaceController: WKInterfaceController {
             return v1 / v2
         case "✕":
             return v1 * v2
+        case "xⁿ":
+            return pow(v1, v2)
         default:
             return 0
         }

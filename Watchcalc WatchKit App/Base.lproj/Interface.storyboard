@@ -146,7 +146,7 @@
                                                 <group key="contentGroup" alignment="left" id="VtS-Nz-CDm">
                                                     <items>
                                                         <label alignment="center" verticalAlignment="center" text="0" id="0XU-JI-Dki">
-                                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                         </label>
                                                     </items>
                                                     <color key="backgroundColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -160,7 +160,7 @@
                                                 <group key="contentGroup" alignment="left" id="lbk-T3-AWY">
                                                     <items>
                                                         <label alignment="center" verticalAlignment="center" text="0" id="n5S-2y-9T8">
-                                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                         </label>
                                                     </items>
                                                     <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -174,7 +174,7 @@
                                                 <group key="contentGroup" alignment="left" id="YYn-0p-Q7P">
                                                     <items>
                                                         <label alignment="center" verticalAlignment="center" text="0" id="g5W-Yd-3l5">
-                                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                         </label>
                                                     </items>
                                                     <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -188,7 +188,7 @@
                                                 <group key="contentGroup" alignment="left" id="SIe-Xr-dCs">
                                                     <items>
                                                         <label alignment="center" verticalAlignment="center" text="0" id="JVU-hb-Th5">
-                                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                         </label>
                                                     </items>
                                                     <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
