@@ -10,5 +10,6 @@ import Foundation
 import WatchKit
 
 class ValueRow : NSObject {
+    @IBOutlet weak var mainGroup: WKInterfaceGroup!
     @IBOutlet weak var valueLabel: WKInterfaceLabel!
 }

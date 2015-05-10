@@ -10,6 +10,7 @@ import Foundation
 import WatchKit
 
 class ButtonRow : NSObject {
+    @IBOutlet weak var mainGroup: WKInterfaceGroup!
     var buttonPressedBlock : ((String) -> ())?
     @IBOutlet weak var button0Label: WKInterfaceLabel!
     @IBOutlet weak var button1Label: WKInterfaceLabel!

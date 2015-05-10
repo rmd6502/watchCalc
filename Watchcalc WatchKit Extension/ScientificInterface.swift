@@ -10,14 +10,14 @@ import Foundation
 import WatchKit
 
 class ScientificInterface : InterfaceController {
+
+    @IBOutlet weak var scientificTable: WKInterfaceTable!
+
     let scientificKeyBindings = [["sin","cos","tan","π"],["eⁿ","xⁿ","lnx","log10"],["6","5","4","-"],["3","2","1","+"],["±","0",".","="]]
 
-    override init() {
-        super.init()
-        self.keyBindings = scientificKeyBindings
-    }
-
     override func awakeWithContext(context: AnyObject?) {
+        self.tableView = scientificTable
+        self.keyBindings = scientificKeyBindings
         super.awakeWithContext(context)
     }
 }

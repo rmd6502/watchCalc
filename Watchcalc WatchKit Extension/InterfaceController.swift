@@ -11,7 +11,7 @@ import Foundation
 
 
 class InterfaceController: WKInterfaceController {
-    @IBOutlet weak var tableView: WKInterfaceTable!
+    weak var tableView: WKInterfaceTable!
     var value = 0.0
     var sign = 1.0
     enum Mode {
@@ -35,9 +35,11 @@ class InterfaceController: WKInterfaceController {
             switch tableView.rowControllerAtIndex(rowNum) {
             case let valueRow as ValueRow:
                 valueRow.valueLabel.setText(operand)
+                valueRow.mainGroup?.setWidth(self.contentFrame.width)
                 valueLabel = valueRow.valueLabel
             case let buttonRow as ButtonRow:
                 println("key \(self.keyBindings[buttonIdx])")
+                buttonRow.mainGroup?.setWidth(self.contentFrame.width)
                 buttonRow.keys = self.keyBindings[buttonIdx++]
                 buttonRow.buttonWidth = buttonWidth
                 buttonRow.buttonPressedBlock = { [unowned self] (button) in
