@@ -51,7 +51,7 @@ class InterfaceController: WKInterfaceController {
 
     override func willActivate() {
         super.willActivate()
-        valueLabel?.setText("\(engine.value)")
+        valueLabel?.setText(engine.operand)
     }
 
     override func didDeactivate() {

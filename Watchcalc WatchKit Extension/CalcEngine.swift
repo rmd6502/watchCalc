@@ -19,7 +19,7 @@ class CalcEngine {
     var valueStack : [Double] = []
     var operatorStack : [String] = []
     let precedences = ["+":0,"-":0,"✕":1,"÷":1,"xⁿ":2]
-    let valueFormat = "%g"
+    let valueFormat = "%.10g"
 
     private init()
     {
