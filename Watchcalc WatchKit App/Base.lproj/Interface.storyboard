@@ -137,7 +137,7 @@
             <objects>
                 <controller identifier="Secondary" title="Scientific" spacing="0.0" hidesWhenLoading="NO" id="f3b-Cn-t18" customClass="ScientificInterface" customModule="Watchcalc_WatchKit_Extension">
                     <items>
-                        <table alignment="center" verticalAlignment="center" id="aWE-Nd-LMp" userLabel="basic table">
+                        <table alignment="left" id="aWE-Nd-LMp" userLabel="basic table">
                             <items>
                                 <tableRow identifier="ButtonRow" selectable="NO" id="Eqi-a6-bd4" customClass="ButtonRow" customModule="Watchcalc_WatchKit_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" spacing="3" id="cdQ-HJ-dmG">
@@ -146,7 +146,7 @@
                                                 <group key="contentGroup" alignment="left" id="VtS-Nz-CDm">
                                                     <items>
                                                         <label alignment="center" verticalAlignment="center" text="0" id="0XU-JI-Dki">
-                                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                                         </label>
                                                     </items>
                                                     <color key="backgroundColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -160,7 +160,7 @@
                                                 <group key="contentGroup" alignment="left" id="lbk-T3-AWY">
                                                     <items>
                                                         <label alignment="center" verticalAlignment="center" text="0" id="n5S-2y-9T8">
-                                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                                         </label>
                                                     </items>
                                                     <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -174,7 +174,7 @@
                                                 <group key="contentGroup" alignment="left" id="YYn-0p-Q7P">
                                                     <items>
                                                         <label alignment="center" verticalAlignment="center" text="0" id="g5W-Yd-3l5">
-                                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                                         </label>
                                                     </items>
                                                     <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -188,7 +188,7 @@
                                                 <group key="contentGroup" alignment="left" id="SIe-Xr-dCs">
                                                     <items>
                                                         <label alignment="center" verticalAlignment="center" text="0" id="JVU-hb-Th5">
-                                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                                         </label>
                                                     </items>
                                                     <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -199,6 +199,7 @@
                                                 </connections>
                                             </button>
                                         </items>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <edgeInsets key="margins" left="3" right="0.0" top="0.0" bottom="0.0"/>
                                     </group>
                                     <connections>
