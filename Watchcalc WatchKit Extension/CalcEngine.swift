@@ -18,7 +18,7 @@ class CalcEngine {
     var operand = "0"
     var valueStack : [Double] = []
     var operatorStack : [String] = []
-    let precedences = ["+":0,"-":0,"✕":1,"÷":1,"xⁿ":2]
+    let precedences = ["+":0,"-":0,"✕":1,"÷":1,"yˣ":2]
     let valueFormat = "%.10g"
 
     private init()
@@ -154,7 +154,7 @@ class CalcEngine {
             value = log10(value)
         case "π":
             value = M_PI
-        case "eⁿ":
+        case "eˣ":
             value = exp(value)
         case "x²":
             value = value * value
@@ -218,7 +218,7 @@ class CalcEngine {
             return v1 / v2
         case "✕":
             return v1 * v2
-        case "xⁿ":
+        case "yˣ":
             return pow(v1, v2)
         default:
             return 0

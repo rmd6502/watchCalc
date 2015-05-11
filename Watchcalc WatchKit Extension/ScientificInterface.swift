@@ -13,7 +13,7 @@ class ScientificInterface : InterfaceController {
 
     @IBOutlet weak var scientificTable: WKInterfaceTable!
 
-    let scientificKeyBindings = [["sin","cos","tan","π"],["eⁿ","xⁿ","lnx","log"],["x²","x³","∛","rnd"],["MC","M+","M-","MR"],["x!","e","EE","="]]
+    let scientificKeyBindings = [["sin","cos","tan","π"],["eˣ","yˣ","lnx","log"],["x²","x³","∛","rnd"],["MC","M+","M-","MR"],["x!","e","EE","="]]
 
     override func awakeWithContext(context: AnyObject?) {
         self.tableView = scientificTable

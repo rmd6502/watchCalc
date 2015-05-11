@@ -77,7 +77,7 @@ class InterfaceController: WKInterfaceController {
             fallthrough
         case "π":
             fallthrough
-        case "eⁿ":
+        case "eˣ":
             fallthrough
         case "lnx":
             fallthrough
