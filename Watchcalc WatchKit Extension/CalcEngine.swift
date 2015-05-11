@@ -8,8 +8,41 @@
 
 import Foundation
 
+enum MonomialOperator : String {
+    case reciprocal = "1/x"
+    case radical = "√"
+    case sin = "sin"
+    case cos = "cos"
+    case tan = "tan"
+    case lnx = "lnx"
+    case log = "log"
+    case π = "π"
+    case eˣ = "eˣ"
+    case x² = "x²"
+    case x³ = "x³"
+    case cubeRoot = "∛"
+    case rnd = "rnd"
+    case factorial = "x!"
+    case e = "e"
+    case sign = "±"
+    case MR = "MR"
+    case MC = "MC"
+    case Mplus = "M+"
+    case Mminus = "M-"
+}
+
+enum BinomialOperator : String {
+    case plus = "+"
+    case minus = "-"
+    case times = "✕"
+    case div = "÷"
+    case power = "yˣ"
+    case exponent = "EE"
+}
+
 class CalcEngine {
     var value = 0.0
+    var memoryValue = 0.0
     var sign = 1.0
     enum Mode {
         case Operator,Operand,CalcOperand
@@ -17,8 +50,8 @@ class CalcEngine {
     var mode = Mode.Operand
     var operand = "0"
     var valueStack : [Double] = []
-    var operatorStack : [String] = []
-    let precedences = ["+":0,"-":0,"✕":1,"÷":1,"yˣ":2, "EE":3]
+    var operatorStack : [BinomialOperator] = []
+    let precedences = [BinomialOperator.plus:0,BinomialOperator.minus:0,BinomialOperator.times:1,BinomialOperator.div:1,BinomialOperator.power:2, BinomialOperator.exponent:3]
     let valueFormat = "%.10g"
 
     private init()
@@ -53,7 +86,7 @@ class CalcEngine {
         operatorStack = []
     }
 
-    func handleMonomial(fn : String)
+    func handleMonomial(fn : MonomialOperator)
     {
         if mode == .Operand {
             pushValue()
@@ -68,7 +101,7 @@ class CalcEngine {
         }
     }
 
-    func handleBinomial(fn: String)
+    func handleBinomial(fn: BinomialOperator)
     {
         if mode == .Operator {
             operatorStack.removeAtIndex(0)
@@ -134,42 +167,50 @@ class CalcEngine {
         valueStack.extend([value])
     }
 
-    func executeFunction(var operation : String)
+    func executeFunction(var operation : MonomialOperator)
     {
         var value = valueStack.removeLast()
         switch operation {
-        case "1/x":
+        case .reciprocal:
             value = 1/value
-        case "√":
+        case .radical:
             value = sqrt(value)
-        case "sin":
+        case .sin:
             value = sin(value)
-        case "cos":
+        case .cos:
             value = cos(value)
-        case "tan":
+        case .tan:
             value = tan(value)
-        case "lnx":
+        case .lnx:
             value = log(value)
-        case "log":
+        case .log:
             value = log10(value)
-        case "π":
+        case .π:
             value = M_PI
-        case "eˣ":
+        case .eˣ:
             value = exp(value)
-        case "x²":
+        case .x²:
             value = value * value
-        case "x³":
+        case .x³:
             value = value * value * value
-        case "∛":
+        case .cubeRoot:
             value = pow(value, 1.0/3.0)
-        case "rnd":
+        case .rnd:
             value = drand48()
-        case "x!":
+        case .factorial:
             value = fact(value)
-        case "e":
+        case .e:
             value = M_E
-        case "±":
+        case .sign:
             value = -value
+        case .MR:
+            value = memoryValue
+        case .MC:
+            memoryValue = 0
+        case .Mplus:
+            memoryValue += value
+        case .Mminus:
+            memoryValue -= value
         default:
             break
         }
@@ -185,7 +226,7 @@ class CalcEngine {
         }
     }
 
-    func popStack(var lastOp : String? = nil)
+    func popStack(var lastOp : BinomialOperator? = nil)
     {
         var lastOpPrec = -1
         if let lastOperator = lastOp, precedence = precedences[lastOperator] {
@@ -207,20 +248,20 @@ class CalcEngine {
         }
     }
 
-    func performOperation(op : String, v1 : Double, v2 : Double) -> Double
+    func performOperation(op : BinomialOperator, v1 : Double, v2 : Double) -> Double
     {
         switch op {
-        case "+":
+        case .plus:
             return v1 + v2
-        case "-":
+        case .minus:
             return v1 - v2
-        case "÷":
+        case .div:
             return v1 / v2
-        case "✕":
+        case .times:
             return v1 * v2
-        case "yˣ":
+        case .power:
             return pow(v1, v2)
-        case "EE":
+        case .exponent:
             return v1 * pow(10.0,v2)
         default:
             return 0

@@ -60,51 +60,21 @@ class InterfaceController: WKInterfaceController {
     }
 
     func buttonPressed(button: String) {
-        switch button {
-        case "1/x":
-            fallthrough
-        case "√":
-            fallthrough
-        case "sin":
-            fallthrough
-        case "cos":
-            fallthrough
-        case "tan":
-            fallthrough
-        case "lnx":
-            fallthrough
-        case "log":
-            fallthrough
-        case "π":
-            fallthrough
-        case "eˣ":
-            fallthrough
-        case "lnx":
-            fallthrough
-        case "log":
-            fallthrough
-        case "x²":
-            fallthrough
-        case "x³":
-            fallthrough
-        case "∛":
-            fallthrough
-        case "rnd":
-            fallthrough
-        case "x!":
-            fallthrough
-        case "±":
-            fallthrough
-        case "e":
-            engine.handleMonomial(button)
-        case "0"..."9",".":
-            engine.handleOperand(button)
-        case "C":
-            engine.doClear()
-        case "=":
-            engine.handleEqual()
-        default:
-            engine.handleBinomial(button)
+        if let monomial = MonomialOperator(rawValue: button) {
+            engine.handleMonomial(monomial)
+        } else if let binomial = BinomialOperator(rawValue: button) {
+            engine.handleBinomial(binomial)
+        } else {
+            switch button {
+            case "0"..."9",".":
+                engine.handleOperand(button)
+            case "C":
+                engine.doClear()
+            case "=":
+                engine.handleEqual()
+            default:
+                println("You need to write the handler for \(button)")
+            }
         }
         valueLabel?.setText(engine.operand)
     }
