@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C06D1A71B0008E800160A7E /* CalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C06D1A61B0008E800160A7E /* CalcEngine.swift */; };
 		9C61DCEB1AF9B2AB005896A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DCEA1AF9B2AB005896A8 /* AppDelegate.swift */; };
 		9C61DCED1AF9B2AB005896A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DCEC1AF9B2AB005896A8 /* ViewController.swift */; };
 		9C61DCF01AF9B2AB005896A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C61DCEE1AF9B2AB005896A8 /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9C06D1A61B0008E800160A7E /* CalcEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcEngine.swift; sourceTree = "<group>"; };
 		9C61DCE51AF9B2AB005896A8 /* Watchcalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watchcalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C61DCE91AF9B2AB005896A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C61DCEA1AF9B2AB005896A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				9C61DD331AF9B43F005896A8 /* ValueRow.swift */,
 				9C61DD371AFAE6E5005896A8 /* ScientificInterface.swift */,
 				9C61DD351AFAE6D3005896A8 /* BasicInterface.swift */,
+				9C06D1A61B0008E800160A7E /* CalcEngine.swift */,
 			);
 			path = "Watchcalc WatchKit Extension";
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 			files = (
 				9C61DD161AF9B2BD005896A8 /* NotificationController.swift in Sources */,
 				9C61DD321AF9B433005896A8 /* ButtonRow.swift in Sources */,
+				9C06D1A71B0008E800160A7E /* CalcEngine.swift in Sources */,
 				9C61DD361AFAE6D3005896A8 /* BasicInterface.swift in Sources */,
 				9C61DD341AF9B43F005896A8 /* ValueRow.swift in Sources */,
 				9C61DD381AFAE6E5005896A8 /* ScientificInterface.swift in Sources */,
@@ -665,6 +669,7 @@
 				9C61DD061AF9B2AB005896A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9C61DD071AF9B2AB005896A8 /* Build configuration list for PBXNativeTarget "WatchcalcTests" */ = {
 			isa = XCConfigurationList;
@@ -673,6 +678,7 @@
 				9C61DD091AF9B2AB005896A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9C61DD2A1AF9B2BD005896A8 /* Build configuration list for PBXNativeTarget "Watchcalc WatchKit App" */ = {
 			isa = XCConfigurationList;
@@ -681,6 +687,7 @@
 				9C61DD2C1AF9B2BD005896A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9C61DD2D1AF9B2BD005896A8 /* Build configuration list for PBXNativeTarget "Watchcalc WatchKit Extension" */ = {
 			isa = XCConfigurationList;
@@ -689,6 +696,7 @@
 				9C61DD2F1AF9B2BD005896A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
