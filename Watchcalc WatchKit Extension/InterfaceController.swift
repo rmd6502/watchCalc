@@ -93,12 +93,12 @@ class InterfaceController: WKInterfaceController {
             fallthrough
         case "x!":
             fallthrough
+        case "±":
+            fallthrough
         case "e":
             engine.handleMonomial(button)
         case "0"..."9",".":
             engine.handleOperand(button)
-        case "±":
-            engine.flipSign()
         case "C":
             engine.doClear()
         case "=":

@@ -41,7 +41,7 @@ class CalcEngine {
     func clear()
     {
         value = 0.0
-        operand = String(format: valueFormat, value)
+        operand = "0"
         sign = 1
         mode = .Operand
     }
@@ -119,18 +119,6 @@ class CalcEngine {
         mode = .CalcOperand
     }
 
-    func flipSign()
-    {
-        if value != 0 {
-            sign = -sign
-            if sign == -1 {
-                operand.insert("-", atIndex: operand.startIndex)
-            } else {
-                operand.removeAtIndex(operand.startIndex)
-            }
-        }
-    }
-
     func doClear()
     {
         if operand != "0" && count(operand) > 0 {
@@ -180,6 +168,8 @@ class CalcEngine {
             value = fact(value)
         case "e":
             value = M_E
+        case "±":
+            value = -value
         default:
             break
         }
