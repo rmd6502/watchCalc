@@ -28,7 +28,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>com.robertdiamond.Watchcalc</string>
+	<string>watchscicalc</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>
