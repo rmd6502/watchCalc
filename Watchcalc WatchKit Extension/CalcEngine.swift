@@ -169,10 +169,13 @@ class CalcEngine {
 
     func executeFunction(var operation : MonomialOperator)
     {
-        var value = valueStack.removeLast()
+        var value = 0.0
+        if valueStack.count > 0 {
+            value = valueStack.removeLast()
+        }
         switch operation {
         case .reciprocal:
-            value = 1/value
+            value = 1.0/value
         case .radical:
             value = sqrt(value)
         case .sin:

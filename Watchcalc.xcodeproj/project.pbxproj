@@ -224,9 +224,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9C61DCE41AF9B2AB005896A8 /* Watchcalc */ = {
+		9C61DCE41AF9B2AB005896A8 /* watchscicalc */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C61DD041AF9B2AB005896A8 /* Build configuration list for PBXNativeTarget "Watchcalc" */;
+			buildConfigurationList = 9C61DD041AF9B2AB005896A8 /* Build configuration list for PBXNativeTarget "watchscicalc" */;
 			buildPhases = (
 				9C61DCE11AF9B2AB005896A8 /* Sources */,
 				9C61DCE21AF9B2AB005896A8 /* Frameworks */,
@@ -238,7 +238,7 @@
 			dependencies = (
 				9C61DD281AF9B2BD005896A8 /* PBXTargetDependency */,
 			);
-			name = Watchcalc;
+			name = watchscicalc;
 			productName = Watchcalc;
 			productReference = 9C61DCE51AF9B2AB005896A8 /* Watchcalc.app */;
 			productType = "com.apple.product-type.application";
@@ -331,7 +331,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9C61DCE41AF9B2AB005896A8 /* Watchcalc */,
+				9C61DCE41AF9B2AB005896A8 /* watchscicalc */,
 				9C61DCF91AF9B2AB005896A8 /* WatchcalcTests */,
 				9C61DD0D1AF9B2BD005896A8 /* Watchcalc WatchKit Extension */,
 				9C61DD1A1AF9B2BD005896A8 /* Watchcalc WatchKit App */,
@@ -414,7 +414,7 @@
 /* Begin PBXTargetDependency section */
 		9C61DCFC1AF9B2AB005896A8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9C61DCE41AF9B2AB005896A8 /* Watchcalc */;
+			target = 9C61DCE41AF9B2AB005896A8 /* watchscicalc */;
 			targetProxy = 9C61DCFB1AF9B2AB005896A8 /* PBXContainerItemProxy */;
 		};
 		9C61DD1E1AF9B2BD005896A8 /* PBXTargetDependency */ = {
@@ -666,7 +666,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C61DD041AF9B2AB005896A8 /* Build configuration list for PBXNativeTarget "Watchcalc" */ = {
+		9C61DD041AF9B2AB005896A8 /* Build configuration list for PBXNativeTarget "watchscicalc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C61DD051AF9B2AB005896A8 /* Debug */,
