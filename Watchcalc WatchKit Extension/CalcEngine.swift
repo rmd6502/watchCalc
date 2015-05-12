@@ -76,7 +76,7 @@ class CalcEngine {
         value = 0.0
         operand = "0"
         sign = 1
-        mode = .CalcOperand
+        mode = .Operand
     }
 
     func allClear()
