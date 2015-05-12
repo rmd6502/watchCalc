@@ -56,7 +56,7 @@ class CalcEngine {
 
     private init()
     {
-        
+        // Does nothing but ensures everyone uses the sharedEngine
     }
 
     class func sharedCalcEngine() -> CalcEngine
