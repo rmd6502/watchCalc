@@ -14,6 +14,8 @@ class InterfaceController: WKInterfaceController {
     weak var tableView: WKInterfaceTable!
     weak var valueLabel : WKInterfaceLabel?
 
+    static var allValueLabels : [WKInterfaceLabel] = []
+
     var engine : CalcEngine
 
     var keyBindings : [[String]]!
@@ -35,6 +37,9 @@ class InterfaceController: WKInterfaceController {
                 valueRow.valueLabel.setText(engine.operand)
                 valueRow.mainGroup?.setWidth(self.contentFrame.width)
                 valueLabel = valueRow.valueLabel
+                if valueLabel != nil {
+                    InterfaceController.allValueLabels.append(valueLabel!)
+                }
             case let buttonRow as ButtonRow:
                 println("key \(self.keyBindings[buttonIdx])")
                 buttonRow.mainGroup?.setWidth(self.contentFrame.width)
@@ -77,6 +82,11 @@ class InterfaceController: WKInterfaceController {
             }
         }
         valueLabel?.setText(engine.operand)
+        for (var label) in InterfaceController.allValueLabels {
+            if label != valueLabel {
+                label.setText(engine.operand)
+            }
+        }
     }
 
 }
