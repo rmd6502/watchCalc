@@ -26,7 +26,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1GZ-bq-zbJ" customClass="CalulatorGradientButton" customModule="watchscicalc" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1GZ-bq-zbJ" customClass="CalulatorGradientButton" customModule="watchscicalc" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="0">
@@ -35,6 +35,11 @@
                                             </state>
                                             <connections>
                                                 <action selector="buttonTapped:" destination="IcP-06-0tN" eventType="touchUpInside" id="ILA-Nh-OH1"/>
+                                                <action selector="buttonTouchCancel:" destination="IcP-06-0tN" eventType="touchUpOutside" id="4WF-MD-76a"/>
+                                                <action selector="buttonTouchCancel:" destination="IcP-06-0tN" eventType="touchCancel" id="Wnp-6z-Xm9"/>
+                                                <action selector="buttonTouchCancel:" destination="IcP-06-0tN" eventType="touchDragExit" id="dCg-cL-daF"/>
+                                                <action selector="buttonTouchCancel:" destination="IcP-06-0tN" eventType="touchDragOutside" id="gMB-kP-ASZ"/>
+                                                <action selector="buttonTouched:" destination="IcP-06-0tN" eventType="touchDown" id="KXG-Yh-S79"/>
                                             </connections>
                                         </button>
                                     </subviews>

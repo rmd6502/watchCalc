@@ -97,9 +97,20 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
         return CGSize(width: width, height: height)
     }
 
+    @IBAction func buttonTouched(sender: CalulatorGradientButton) {
+        sender.backgroundColor = UIColor.blueColor()
+    }
+
+    @IBAction func buttonTouchCancel(sender: CalulatorGradientButton) {
+        sender.backgroundColor = UIColor(red: 0, green: 0.5, blue: 0, alpha: 1.0)
+    }
+    
     @IBAction func buttonTapped(sender: UIButton) {
         if let button = sender.titleLabel?.text {
             println("selected \(button)")
+            UIView.animateWithDuration(0.125, animations: { () -> Void in
+                sender.backgroundColor = UIColor(red: 0, green: 0.5, blue: 0, alpha: 1.0)
+            })
 
             engine.handleButton(button)
             valueLabel?.text = engine.operand
