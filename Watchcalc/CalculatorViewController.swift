@@ -45,8 +45,8 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CalculatorButton", forIndexPath: indexPath) as? CalculatorButton {
             cell.layer.cornerRadius = 6
-            cell.buttonLabel.text = buttons[indexPath.row]
-            if let layer = cell.layer as? CAGradientLayer {
+            cell.calcButton.setTitle(buttons[indexPath.row], forState: UIControlState.Normal)
+            if let layer = cell.calcButton.layer as? CAGradientLayer {
                 let gradientColors = [UIColor.grayColor().colorWithAlphaComponent(0.6).CGColor, UIColor.whiteColor().colorWithAlphaComponent(0.4).CGColor, UIColor.darkGrayColor().colorWithAlphaComponent(0.5).CGColor]
                 let gradientOffsets = [0.0, 0.1, 0.9]
                 layer.startPoint = CGPoint(x: 0.4, y: -0.15)
@@ -72,29 +72,10 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
 
     // MARK: Collection View Delegate
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CalculatorButton, button = cell.buttonLabel.text {
+        if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CalculatorButton, button = cell.calcButton.titleLabel?.text {
             println("selected \(button)")
-            cell.backgroundColor = UIColor.blueColor()
-            UIView.animateWithDuration(0.125, animations: { () -> Void in
-                cell.backgroundColor = UIColor(red: 0, green: 0.5, blue: 0, alpha: 1.0)
-                cell.buttonLabel.highlighted = false
-            })
-            if let monomial = MonomialOperator(rawValue: button) {
-                engine.handleMonomial(monomial)
-            } else if let binomial = BinomialOperator(rawValue: button) {
-                engine.handleBinomial(binomial)
-            } else {
-                switch button {
-                case "0"..."9",".":
-                    engine.handleOperand(button)
-                case "C":
-                    engine.doClear()
-                case "=":
-                    engine.handleEqual()
-                default:
-                    println("You need to write the handler for \(button)")
-                }
-            }
+
+            engine.handleButton(button)
             valueLabel?.text = engine.operand
         }
     }
@@ -114,6 +95,15 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
         let height = CGFloat(60.0)
 
         return CGSize(width: width, height: height)
+    }
+
+    @IBAction func buttonTapped(sender: UIButton) {
+        if let button = sender.titleLabel?.text {
+            println("selected \(button)")
+
+            engine.handleButton(button)
+            valueLabel?.text = engine.operand
+        }
     }
 }
 
