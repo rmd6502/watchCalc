@@ -65,22 +65,8 @@ class InterfaceController: WKInterfaceController {
     }
 
     func buttonPressed(button: String) {
-        if let monomial = MonomialOperator(rawValue: button) {
-            engine.handleMonomial(monomial)
-        } else if let binomial = BinomialOperator(rawValue: button) {
-            engine.handleBinomial(binomial)
-        } else {
-            switch button {
-            case "0"..."9",".":
-                engine.handleOperand(button)
-            case "C":
-                engine.doClear()
-            case "=":
-                engine.handleEqual()
-            default:
-                println("You need to write the handler for \(button)")
-            }
-        }
+        engine.handleButton(button)
+        
         valueLabel?.setText(engine.operand)
         for (var label) in InterfaceController.allValueLabels {
             if label != valueLabel {

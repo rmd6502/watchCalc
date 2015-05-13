@@ -9,13 +9,15 @@
 import Foundation
 import UIKit
 
-class CalculatorButton : UICollectionViewCell {
-    @IBOutlet weak var buttonLabel: UILabel!
-
-    override class func layerClass() -> AnyClass
-    {
+class CalulatorGradientButton : UIButton {
+    
+    override class func layerClass() -> AnyClass {
         return CAGradientLayer.self
     }
+}
+
+class CalculatorButton : UICollectionViewCell {
+    @IBOutlet weak var calcButton: CalulatorGradientButton!
 }
 
 class CalculatorHeader : UICollectionReusableView {

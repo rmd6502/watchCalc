@@ -271,4 +271,26 @@ class CalcEngine {
         }
     }
 
+    func handleButton(button : String) -> Bool
+    {
+        if let monomial = MonomialOperator(rawValue: button) {
+            handleMonomial(monomial)
+        } else if let binomial = BinomialOperator(rawValue: button) {
+            handleBinomial(binomial)
+        } else {
+            switch button {
+            case "0"..."9",".":
+                handleOperand(button)
+            case "C":
+                doClear()
+            case "=":
+                handleEqual()
+            default:
+                println("You need to write the handler for \(button)")
+                return false
+            }
+        }
+        return true
+    }
+
 }

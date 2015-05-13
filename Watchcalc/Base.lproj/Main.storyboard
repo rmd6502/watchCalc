@@ -26,28 +26,34 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cli-ye-sgT">
-                                            <rect key="frame" x="8" y="0.0" width="34" height="50"/>
-                                            <accessibility key="accessibilityConfiguration" hint="button" label="button">
-                                                <accessibilityTraits key="traits" none="YES" button="YES" staticText="YES"/>
-                                            </accessibility>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="shadowColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1GZ-bq-zbJ" customClass="CalulatorGradientButton" customModule="watchscicalc" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="0">
+                                                <color key="titleColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="buttonTapped:" destination="IcP-06-0tN" eventType="touchUpInside" id="ILA-Nh-OH1"/>
+                                                <action selector="buttonTouchCancel:" destination="IcP-06-0tN" eventType="touchUpOutside" id="4WF-MD-76a"/>
+                                                <action selector="buttonTouchCancel:" destination="IcP-06-0tN" eventType="touchCancel" id="Wnp-6z-Xm9"/>
+                                                <action selector="buttonTouchCancel:" destination="IcP-06-0tN" eventType="touchDragExit" id="dCg-cL-daF"/>
+                                                <action selector="buttonTouchCancel:" destination="IcP-06-0tN" eventType="touchDragOutside" id="gMB-kP-ASZ"/>
+                                                <action selector="buttonTouched:" destination="IcP-06-0tN" eventType="touchDown" id="KXG-Yh-S79"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="cli-ye-sgT" secondAttribute="bottom" id="KU9-Oh-GIf"/>
-                                    <constraint firstItem="cli-ye-sgT" firstAttribute="leading" secondItem="Md6-I1-sNl" secondAttribute="leadingMargin" id="PfQ-T1-hfq"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="cli-ye-sgT" secondAttribute="trailing" id="cuE-cQ-BqV"/>
-                                    <constraint firstItem="cli-ye-sgT" firstAttribute="top" secondItem="Md6-I1-sNl" secondAttribute="top" id="ofE-Bb-Ru6"/>
+                                    <constraint firstAttribute="bottom" secondItem="1GZ-bq-zbJ" secondAttribute="bottom" id="9rb-ah-xw7"/>
+                                    <constraint firstAttribute="trailing" secondItem="1GZ-bq-zbJ" secondAttribute="trailing" id="KfN-6o-tI9"/>
+                                    <constraint firstItem="1GZ-bq-zbJ" firstAttribute="top" secondItem="Md6-I1-sNl" secondAttribute="top" id="Sjr-jQ-xa0"/>
+                                    <constraint firstItem="1GZ-bq-zbJ" firstAttribute="leading" secondItem="Md6-I1-sNl" secondAttribute="leading" id="heL-fb-YRq"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="buttonLabel" destination="cli-ye-sgT" id="8rb-hZ-tl7"/>
+                                    <outlet property="calcButton" destination="1GZ-bq-zbJ" id="ar7-a2-3BZ"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
