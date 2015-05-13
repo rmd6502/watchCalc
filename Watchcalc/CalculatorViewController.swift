@@ -8,14 +8,19 @@
 
 import UIKit
 
-class CalculatorViewController: UICollectionViewController {
+class CalculatorViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     var valueLabel : UILabel?
     let buttons = ["C","√","1/x","÷","9","8","7","✕","6","5","4","-","3","2","1","+","±","0",".","=","sin","cos","tan","π","eˣ","yˣ","lnx","log","x²","x³","∛","rnd","MC","M+","M-","MR","x!","e","EE","="]
     let engine = CalcEngine.sharedCalcEngine()
-    
+
+    // MARK: Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let flowLayout = self.collectionViewLayout as! UICollectionViewFlowLayout
+        flowLayout.minimumInteritemSpacing = 3.0
+        flowLayout.minimumLineSpacing = 6.0
+        flowLayout.sectionInset = UIEdgeInsets(top: 5.0, left: 2.0, bottom: 0.0, right: 2.0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,6 +28,7 @@ class CalculatorViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: Collection View Data Source
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return buttons.count
     }
@@ -45,9 +51,15 @@ class CalculatorViewController: UICollectionViewController {
         }
     }
 
+    // MARK: Collection View Delegate
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CalculatorButton, button = cell.buttonLabel.text {
             println("selected \(button)")
+            cell.backgroundColor = UIColor.blueColor()
+            UIView.animateWithDuration(0.125, animations: { () -> Void in
+                cell.backgroundColor = UIColor(red: 0, green: 0.5, blue: 0, alpha: 1.0)
+                cell.buttonLabel.highlighted = false
+            })
             if let monomial = MonomialOperator(rawValue: button) {
                 engine.handleMonomial(monomial)
             } else if let binomial = BinomialOperator(rawValue: button) {
@@ -66,6 +78,15 @@ class CalculatorViewController: UICollectionViewController {
             }
             valueLabel?.text = engine.operand
         }
+    }
+
+    // MARK: Flow Layout Delegate
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let flowLayout = self.collectionViewLayout as! UICollectionViewFlowLayout
+        let width = self.view.bounds.width / 4.0 - 2 * flowLayout.minimumInteritemSpacing
+        let numRows = CGFloat(buttons.count) / 4.0
+        let height = self.view.bounds.height / numRows - 2 * flowLayout.minimumLineSpacing
+        return CGSize(width: width, height: height)
     }
 }
 
