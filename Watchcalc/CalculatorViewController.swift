@@ -14,7 +14,6 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     let engine = CalcEngine.sharedCalcEngine()
 
     // MARK: Life Cycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         let flowLayout = self.collectionViewLayout as! UICollectionViewFlowLayout
@@ -28,6 +27,9 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
         // Dispose of any resources that can be recreated.
     }
 
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
     // MARK: Collection View Data Source
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return buttons.count
@@ -35,7 +37,16 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CalculatorButton", forIndexPath: indexPath) as? CalculatorButton {
+            cell.layer.cornerRadius = 6
             cell.buttonLabel.text = buttons[indexPath.row]
+            if let layer = cell.layer as? CAGradientLayer {
+                let gradientColors = [UIColor.grayColor().colorWithAlphaComponent(0.6).CGColor, UIColor.whiteColor().colorWithAlphaComponent(0.4).CGColor, UIColor.darkGrayColor().colorWithAlphaComponent(0.5).CGColor]
+                let gradientOffsets = [0.0, 0.1, 0.9]
+                layer.startPoint = CGPoint(x: 0.4, y: -0.15)
+                layer.endPoint = CGPoint(x: 0.7, y: 1.0)
+                layer.locations = gradientOffsets
+                layer.colors = gradientColors
+            }
             return cell
         } else {
             return UICollectionViewCell()
@@ -45,6 +56,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         if let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "CalculatorValueHeader", forIndexPath: indexPath) as? CalculatorHeader {
             self.valueLabel = headerView.valueLabel
+            headerView.valueLabel.layer.cornerRadius = 10
             return headerView
         } else {
             return UICollectionReusableView()
@@ -85,7 +97,14 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
         let flowLayout = self.collectionViewLayout as! UICollectionViewFlowLayout
         let width = self.view.bounds.width / 4.0 - 2 * flowLayout.minimumInteritemSpacing
         let numRows = CGFloat(buttons.count) / 4.0
-        let height = self.view.bounds.height / numRows - 2 * flowLayout.minimumLineSpacing
+        let height = (self.view.bounds.height - 60.0) / numRows - 2 * flowLayout.minimumLineSpacing
+        return CGSize(width: width, height: height)
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let width = self.view.bounds.width - 10.0
+        let height = CGFloat(60.0)
+
         return CGSize(width: width, height: height)
     }
 }

@@ -11,6 +11,11 @@ import UIKit
 
 class CalculatorButton : UICollectionViewCell {
     @IBOutlet weak var buttonLabel: UILabel!
+
+    override class func layerClass() -> AnyClass
+    {
+        return CAGradientLayer.self
+    }
 }
 
 class CalculatorHeader : UICollectionReusableView {
