@@ -19,7 +19,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
         let flowLayout = self.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.minimumInteritemSpacing = 3.0
         flowLayout.minimumLineSpacing = 6.0
-        flowLayout.sectionInset = UIEdgeInsets(top: 5.0, left: 2.0, bottom: 0.0, right: 2.0)
+        flowLayout.sectionInset = UIEdgeInsets(top: 5.0, left: 2.0, bottom: 5.0, right: 2.0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,9 +27,16 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: View Controller
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
+
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        self.collectionView?.reloadData()
+    }
+
     // MARK: Collection View Data Source
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return buttons.count
@@ -97,11 +104,12 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
         let flowLayout = self.collectionViewLayout as! UICollectionViewFlowLayout
         let width = self.view.bounds.width / 4.0 - 2 * flowLayout.minimumInteritemSpacing
         let numRows = CGFloat(buttons.count) / 4.0
-        let height = (self.view.bounds.height - 60.0) / numRows - 2 * flowLayout.minimumLineSpacing
+        let height = (self.view.bounds.height - 5.0) / numRows - 2 * flowLayout.minimumLineSpacing
         return CGSize(width: width, height: height)
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        println("size \(self.view.frame)")
         let width = self.view.bounds.width - 10.0
         let height = CGFloat(60.0)
 

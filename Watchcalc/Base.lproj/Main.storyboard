@@ -26,12 +26,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cli-ye-sgT">
-                                            <rect key="frame" x="8" y="8" width="34" height="34"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cli-ye-sgT">
+                                            <rect key="frame" x="8" y="0.0" width="34" height="50"/>
                                             <accessibility key="accessibilityConfiguration" hint="button" label="button">
                                                 <accessibilityTraits key="traits" none="YES" button="YES" staticText="YES"/>
                                             </accessibility>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
@@ -40,10 +40,10 @@
                                 </view>
                                 <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottomMargin" secondItem="cli-ye-sgT" secondAttribute="bottom" id="KU9-Oh-GIf"/>
+                                    <constraint firstAttribute="bottom" secondItem="cli-ye-sgT" secondAttribute="bottom" id="KU9-Oh-GIf"/>
                                     <constraint firstItem="cli-ye-sgT" firstAttribute="leading" secondItem="Md6-I1-sNl" secondAttribute="leadingMargin" id="PfQ-T1-hfq"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="cli-ye-sgT" secondAttribute="trailing" id="cuE-cQ-BqV"/>
-                                    <constraint firstItem="cli-ye-sgT" firstAttribute="top" secondItem="Md6-I1-sNl" secondAttribute="topMargin" id="ofE-Bb-Ru6"/>
+                                    <constraint firstItem="cli-ye-sgT" firstAttribute="top" secondItem="Md6-I1-sNl" secondAttribute="top" id="ofE-Bb-Ru6"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="buttonLabel" destination="cli-ye-sgT" id="8rb-hZ-tl7"/>
@@ -55,7 +55,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vlz-cH-WAM">
-                                    <rect key="frame" x="8" y="8" width="584" height="34"/>
+                                    <rect key="frame" x="8" y="28" width="584" height="14"/>
                                     <color key="backgroundColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                                     <accessibility key="accessibilityConfiguration" hint="value" label="value"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -64,7 +64,7 @@
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="Vlz-cH-WAM" firstAttribute="top" secondItem="8iv-N3-Zmv" secondAttribute="topMargin" id="GAF-lX-XVH"/>
+                                <constraint firstItem="Vlz-cH-WAM" firstAttribute="top" secondItem="8iv-N3-Zmv" secondAttribute="topMargin" constant="20" id="GAF-lX-XVH"/>
                                 <constraint firstAttribute="bottomMargin" secondItem="Vlz-cH-WAM" secondAttribute="bottom" id="XnL-29-0JL"/>
                                 <constraint firstAttribute="trailingMargin" secondItem="Vlz-cH-WAM" secondAttribute="trailing" id="iBO-MP-kFZ"/>
                                 <constraint firstItem="Vlz-cH-WAM" firstAttribute="leading" secondItem="8iv-N3-Zmv" secondAttribute="leadingMargin" id="wQZ-kb-XHh"/>
