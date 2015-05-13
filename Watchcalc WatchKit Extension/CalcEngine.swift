@@ -52,7 +52,8 @@ class CalcEngine {
     var valueStack : [Double] = []
     var operatorStack : [BinomialOperator] = []
     let precedences = [BinomialOperator.plus:0,BinomialOperator.minus:0,BinomialOperator.times:1,BinomialOperator.div:1,BinomialOperator.power:2, BinomialOperator.exponent:3]
-    let valueFormat = "%.10g"
+    let valueFormat = "%.*g"
+    var valueDigits = 10
 
     private init()
     {
@@ -97,7 +98,7 @@ class CalcEngine {
         mode = .CalcOperand
         if let lastValue = valueStack.last {
             value = lastValue
-            operand = String(format: valueFormat, value)
+            operand = String(format: valueFormat, valueDigits, value)
         }
     }
 
@@ -115,7 +116,7 @@ class CalcEngine {
         operatorStack.extend([fn])
         if let lastValue = valueStack.last {
             value = lastValue
-            operand = String(format: valueFormat, value)
+            operand = String(format: valueFormat, valueDigits, value)
         }
     }
 
@@ -145,7 +146,7 @@ class CalcEngine {
         }
         self.popStack()
         value = valueStack.removeAtIndex(0)
-        operand = String(format: valueFormat, value)
+        operand = String(format: valueFormat, valueDigits, value)
         valueStack = [value]
         operatorStack = []
         sign = 1

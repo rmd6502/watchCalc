@@ -63,7 +63,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         if let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "CalculatorValueHeader", forIndexPath: indexPath) as? CalculatorHeader {
             self.valueLabel = headerView.valueLabel
-            headerView.valueLabel.layer.cornerRadius = 10
+            headerView.valueLabelContainer.layer.cornerRadius = 6
             return headerView
         } else {
             return UICollectionReusableView()
@@ -98,18 +98,18 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     }
 
     @IBAction func buttonTouched(sender: CalulatorGradientButton) {
-        sender.backgroundColor = UIColor.blueColor()
+        sender.backgroundColor = UIColor.grayColor()
     }
 
     @IBAction func buttonTouchCancel(sender: CalulatorGradientButton) {
-        sender.backgroundColor = UIColor(red: 0, green: 0.5, blue: 0, alpha: 1.0)
+        sender.backgroundColor = UIColor.darkGrayColor()
     }
     
     @IBAction func buttonTapped(sender: UIButton) {
         if let button = sender.titleLabel?.text {
             println("selected \(button)")
             UIView.animateWithDuration(0.125, animations: { () -> Void in
-                sender.backgroundColor = UIColor(red: 0, green: 0.5, blue: 0, alpha: 1.0)
+                sender.backgroundColor = UIColor.darkGrayColor()
             })
 
             engine.handleButton(button)
