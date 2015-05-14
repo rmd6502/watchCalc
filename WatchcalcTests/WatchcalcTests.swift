@@ -10,10 +10,11 @@ import UIKit
 import XCTest
 
 class WatchcalcTests: XCTestCase {
-    
+    var engine = CalcEngine.sharedCalcEngine()
+
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        engine.allClear()
     }
     
     override func tearDown() {
@@ -21,9 +22,21 @@ class WatchcalcTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testSimple() {
+        engine.handleButton("3")
+        engine.handleButton("3")
+        engine.handleButton("+")
+        engine.handleButton("4")
+        engine.handleButton("5")
+        engine.handleButton("✕")
+        engine.handleButton("6")
+        engine.handleButton("7")
+        engine.handleButton("=")
+        XCTAssertEqual(engine.value, 3048, "Operator Precedence Fail")
+        engine.handleButton("-")
+        engine.handleButton("8")
+        engine.handleButton("=")
+        XCTAssertEqual(engine.value, 3040, "value stack Fail")
     }
     
     func testPerformanceExample() {

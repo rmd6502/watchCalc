@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9C06D1A71B0008E800160A7E /* CalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C06D1A61B0008E800160A7E /* CalcEngine.swift */; };
+		9C2815DB1B042D4F00C163E5 /* CalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C06D1A61B0008E800160A7E /* CalcEngine.swift */; };
 		9C61DCEB1AF9B2AB005896A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DCEA1AF9B2AB005896A8 /* AppDelegate.swift */; };
 		9C61DCED1AF9B2AB005896A8 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DCEC1AF9B2AB005896A8 /* CalculatorViewController.swift */; };
 		9C61DCF01AF9B2AB005896A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C61DCEE1AF9B2AB005896A8 /* Main.storyboard */; };
@@ -413,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C2815DB1B042D4F00C163E5 /* CalcEngine.swift in Sources */,
 				9C61DD011AF9B2AB005896A8 /* WatchcalcTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
