@@ -38,6 +38,23 @@ class WatchcalcTests: XCTestCase {
         engine.handleButton("=")
         XCTAssertEqual(engine.value, 3040, "value stack Fail")
     }
+
+    func testPrecedence() {
+        engine.handleButton("3")
+        engine.handleButton("3")
+        engine.handleButton("+")
+        engine.handleButton("4")
+        engine.handleButton("5")
+        engine.handleButton("✕")
+        engine.handleButton("6")
+        engine.handleButton("7")
+        engine.handleButton("yˣ")
+        engine.handleButton("3")
+        engine.handleButton("+")
+        engine.handleButton("9")
+        engine.handleButton("=")
+        XCTAssertEqual(engine.value, 13534377, "Operator Precedence Fail")
+    }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
