@@ -55,6 +55,35 @@ class WatchcalcTests: XCTestCase {
         engine.handleButton("=")
         XCTAssertEqual(engine.value, 13534377, "Operator Precedence Fail")
     }
+
+    func testClear() {
+        engine.handleButton("3")
+        engine.handleButton("3")
+        engine.handleButton("+")
+        engine.handleButton("4")
+        engine.handleButton("5")
+        engine.handleButton("✕")
+        engine.handleButton("6")
+        engine.handleButton("7")
+        engine.handleButton("=")
+        engine.handleButton("C")
+        XCTAssertEqual(engine.operand, "0", "Didn't clear operand")
+        engine.handleButton("2")
+        engine.handleButton("+")
+        engine.handleButton("7")
+        engine.handleButton("=")
+        XCTAssertEqual(engine.operand, "9", "Clear didn't clear operand stack")
+        engine.handleButton("5")
+        engine.handleButton("5")
+        engine.handleButton("✕")
+        engine.handleButton("7")
+        engine.handleButton("2")
+        engine.handleButton("C")
+        engine.handleButton("2")
+        engine.handleButton("2")
+        engine.handleButton("=")
+        XCTAssertEqual(engine.operand, "1210", "CE didn't work")
+    }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
