@@ -171,6 +171,15 @@ class CalcEngine {
         valueStack.extend([value])
     }
 
+    func resetToValue(newValue : Double)
+    {
+        allClear()
+        value = newValue
+        valueStack.append(value)
+        operand = String(format: valueFormat, valueDigits, value)
+        mode = .CalcOperand
+    }
+
     func executeFunction(var operation : MonomialOperator)
     {
         var value = 0.0

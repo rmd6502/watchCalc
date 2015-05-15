@@ -97,6 +97,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
         return CGSize(width: width, height: height)
     }
 
+    // MARK: Actions
     @IBAction func buttonTouched(sender: CalulatorGradientButton) {
         sender.backgroundColor = UIColor.grayColor()
     }
@@ -115,6 +116,10 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
             engine.handleButton(button)
             valueLabel?.text = engine.operand
         }
+    }
+
+    func resetToValue(value : Double) {
+        engine.resetToValue(value)
     }
 }
 

@@ -41,6 +41,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]!) -> Void) -> Bool {
+        switch userActivity.activityType {
+        case "com.robertdiamond.watchscicalc.value":
+            if let calcVC = self.window?.rootViewController as? CalculatorViewController, newValue = userActivity.userInfo?["value"] as? Double {
+                calcVC.resetToValue(newValue)
+                return true
+            }
+        default:
+            break
+        }
+        return false
+    }
 }
 

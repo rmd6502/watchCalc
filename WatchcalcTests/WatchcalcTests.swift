@@ -84,12 +84,12 @@ class WatchcalcTests: XCTestCase {
         engine.handleButton("=")
         XCTAssertEqual(engine.operand, "1210", "CE didn't work")
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
+
+    func testReset() {
+        engine.resetToValue(2048)
+        engine.handleButton("+")
+        engine.handleButton("5")
+        engine.handleButton("=")
+        XCTAssertEqual(engine.value, 2053, "ResetToValue fail")
     }
-    
 }
