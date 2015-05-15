@@ -22,6 +22,7 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate {
     override init() {
         engine = CalcEngine.sharedCalcEngine()
         super.init()
+        engine.delegate = self
     }
     
     override func awakeWithContext(context: AnyObject?) {

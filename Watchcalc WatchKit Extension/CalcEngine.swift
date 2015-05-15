@@ -46,10 +46,18 @@ enum BinomialOperator : String {
 }
 
 class CalcEngine {
-    var value = 0.0
+    var value = 0.0 {
+        willSet(newValue) {
+            if (value != newValue) {
+                self.delegate?.valueChanged?(newValue)
+            }
+        }
+    }
     var memoryValue = 0.0 {
-        didSet {
-            self.delegate?.memoryChanged?(self.value)
+        willSet(newValue) {
+            if memoryValue != newValue {
+                self.delegate?.memoryChanged?(newValue)
+            }
         }
     }
 
@@ -58,11 +66,7 @@ class CalcEngine {
         case Operator,Operand,CalcOperand
     }
     var mode = Mode.Operand
-    var operand = "0" {
-        didSet {
-            self.delegate?.valueChanged?(self.value)
-        }
-    }
+    var operand = "0"
     var valueStack : [Double] = []
     var operatorStack : [BinomialOperator] = []
     let precedences = [BinomialOperator.plus:0,BinomialOperator.minus:0,BinomialOperator.times:1,BinomialOperator.div:1,BinomialOperator.power:2, BinomialOperator.exponent:3]
