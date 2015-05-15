@@ -13,6 +13,8 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     let buttons = ["C","√","1/x","÷","9","8","7","✕","6","5","4","-","3","2","1","+","±","0",".","=","sin","cos","tan","π","eˣ","yˣ","lnx","log","x²","x³","∛","rnd","MC","M+","M-","MR","x!","e","EE","="]
     let engine = CalcEngine.sharedCalcEngine()
 
+    var buttonColor = UIColor(red: 31.0/255.0, green: 33.0/255.0, blue: 36.0/255.0, alpha: 1.0)
+
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,14 +105,14 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     }
 
     @IBAction func buttonTouchCancel(sender: CalulatorGradientButton) {
-        sender.backgroundColor = UIColor.darkGrayColor()
+        sender.backgroundColor = buttonColor
     }
     
     @IBAction func buttonTapped(sender: UIButton) {
         if let button = sender.titleLabel?.text {
             println("selected \(button)")
             UIView.animateWithDuration(0.125, animations: { () -> Void in
-                sender.backgroundColor = UIColor.darkGrayColor()
+                sender.backgroundColor = self.buttonColor
             })
 
             engine.handleButton(button)
