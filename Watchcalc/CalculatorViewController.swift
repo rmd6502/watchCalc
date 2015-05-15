@@ -8,18 +8,31 @@
 
 import UIKit
 
-class CalculatorViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class CalculatorViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CalcEngineDelegate {
     var valueLabel : UILabel?
-    let buttons = ["C","√","1/x","÷","9","8","7","✕","6","5","4","-","3","2","1","+","±","0",".","=","sin","cos","tan","π","eˣ","yˣ","lnx","log","x²","x³","∛","rnd","MC","M+","M-","MR","x!","e","EE","="]
+    let buttons = ["C","√","1/x","÷","7","8","9","✕","4","5","6","-","1","2","3","+","±","0",".","=","sin","cos","tan","π","eˣ","yˣ","lnx","log","x²","x³","∛","rnd","MC","M+","M-","MR","x!","e","EE","="]
     let engine = CalcEngine.sharedCalcEngine()
 
     var buttonColor = UIColor(red: 31.0/255.0, green: 33.0/255.0, blue: 36.0/255.0, alpha: 1.0)
 
     var darwinNotificationCenter = CFNotificationCenterGetDarwinNotifyCenter()
+    var sharedDefaults : NSUserDefaults!
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        sharedDefaults = NSUserDefaults(suiteName: "com.robertdiamond.watchscicalc")
+        if let storedValue = sharedDefaults?.doubleForKey("value") {
+            engine.resetToValue(storedValue)
+        }
+        if let storedValue = sharedDefaults?.doubleForKey("memory") {
+            engine.memoryValue = storedValue
+        }
+    }
 
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        engine.delegate = self
         let flowLayout = self.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.minimumInteritemSpacing = 3.0
         flowLayout.minimumLineSpacing = 6.0
@@ -80,7 +93,6 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
             println("selected \(button)")
 
             engine.handleButton(button)
-            valueLabel?.text = engine.operand
         }
     }
 
@@ -112,21 +124,37 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     
     @IBAction func buttonTapped(sender: UIButton) {
         if let button = sender.titleLabel?.text {
-            println("selected \(button)")
-            UIView.animateWithDuration(0.125, animations: { () -> Void in
-                sender.backgroundColor = self.buttonColor
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                println("selected \(button)")
+                UIView.animateWithDuration(0.0625, animations: { () -> Void in
+                    sender.backgroundColor = self.buttonColor
+                })
             })
 
             engine.handleButton(button)
-            valueLabel?.text = engine.operand
-            let name : CFStringRef! = "button"
-            CFNotificationCenterPostNotification(darwinNotificationCenter, name, nil, nil, Boolean(1))
         }
     }
 
     func resetToValue(value : Double) {
         engine.resetToValue(value)
         valueLabel?.text = engine.operand
+    }
+
+    func valueChanged(newValue: Double) {
+        valueLabel?.text = engine.operand
+        let name : CFStringRef! = "button"
+        CFNotificationCenterPostNotification(darwinNotificationCenter, name, nil, nil, Boolean(1))
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            self.sharedDefaults?.setDouble(newValue, forKey: "value")
+            self.sharedDefaults?.synchronize()
+        })
+    }
+
+    func memoryChanged(newValue: Double) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            self.sharedDefaults?.setDouble(newValue, forKey: "memory")
+            self.sharedDefaults?.synchronize()
+        })
     }
 }
 

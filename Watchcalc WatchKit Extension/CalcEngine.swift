@@ -40,20 +40,35 @@ enum BinomialOperator : String {
     case exponent = "EE"
 }
 
+@objc protocol CalcEngineDelegate {
+    optional func valueChanged(newValue : Double)
+    optional func memoryChanged(newValue : Double)
+}
+
 class CalcEngine {
     var value = 0.0
-    var memoryValue = 0.0
+    var memoryValue = 0.0 {
+        didSet {
+            self.delegate?.memoryChanged?(self.value)
+        }
+    }
+
     var sign = 1.0
     enum Mode {
         case Operator,Operand,CalcOperand
     }
     var mode = Mode.Operand
-    var operand = "0"
+    var operand = "0" {
+        didSet {
+            self.delegate?.valueChanged?(self.value)
+        }
+    }
     var valueStack : [Double] = []
     var operatorStack : [BinomialOperator] = []
     let precedences = [BinomialOperator.plus:0,BinomialOperator.minus:0,BinomialOperator.times:1,BinomialOperator.div:1,BinomialOperator.power:2, BinomialOperator.exponent:3]
     let valueFormat = "%.*g"
     var valueDigits = 10
+    var delegate : CalcEngineDelegate?
 
     private init()
     {

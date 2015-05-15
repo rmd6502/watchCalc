@@ -9,7 +9,7 @@
 import WatchKit
 import Foundation
 
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController, CalcEngineDelegate {
     weak var tableView: WKInterfaceTable!
     weak var valueLabel : WKInterfaceLabel?
 
@@ -17,6 +17,7 @@ class InterfaceController: WKInterfaceController {
     var engine : CalcEngine
     var keyBindings : [[String]]!
     let notificationCenter = DarwinNotificationCenter()
+    var sharedDefaults : NSUserDefaults!
 
     override init() {
         engine = CalcEngine.sharedCalcEngine()
@@ -50,6 +51,13 @@ class InterfaceController: WKInterfaceController {
                 break
             }
         }
+        sharedDefaults = NSUserDefaults(suiteName: "com.robertdiamond.watchscicalc")
+        if let storedValue = sharedDefaults?.doubleForKey("value") {
+            engine.resetToValue(storedValue)
+        }
+        if let storedValue = sharedDefaults?.doubleForKey("memory") {
+            engine.memoryValue = storedValue
+        }
     }
 
     override func willActivate() {
@@ -69,7 +77,6 @@ class InterfaceController: WKInterfaceController {
         WKInterfaceController.openParentApplication(["request": "value"], reply: { (userInfo, error) -> Void in
             if let newValue = userInfo["value"] as? Double {
                 self.engine.resetToValue(newValue)
-                self.valueLabel?.setText(self.engine.operand)
             } else {
                 println("Failed: userInfo \(userInfo) error \(error)")
             }
@@ -78,7 +85,9 @@ class InterfaceController: WKInterfaceController {
 
     func buttonPressed(button: String) {
         engine.handleButton(button)
-        
+    }
+
+    func valueChanged(newValue: Double) {
         valueLabel?.setText(engine.operand)
         for (var label) in InterfaceController.allValueLabels {
             if label != valueLabel {
@@ -91,8 +100,18 @@ class InterfaceController: WKInterfaceController {
                 WKInterfaceController.openParentApplication(["request": "newValue", "value": strongSelf.engine.value], reply: { (userInfo, error) -> Void in
                     println("userInfo \(userInfo) error \(error)")
                 })
-                self?.updateUserActivity("com.robertdiamond.watchscicalc.value", userInfo: ["value": strongSelf.engine.value], webpageURL: nil)
+                strongSelf.updateUserActivity("com.robertdiamond.watchscicalc.value", userInfo: ["value": strongSelf.engine.value], webpageURL: nil)
+
+                strongSelf.sharedDefaults?.setDouble(strongSelf.engine.value, forKey: "value")
+                strongSelf.sharedDefaults?.synchronize()
             }
+        })
+    }
+
+    func memoryChanged(newValue: Double) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            self.sharedDefaults?.setDouble(self.engine.value, forKey: "memory")
+            self.sharedDefaults?.synchronize()
         })
     }
 }
