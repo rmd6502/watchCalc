@@ -48,20 +48,17 @@ enum BinomialOperator : String {
 class CalcEngine {
     var value = 0.0 {
         willSet(newValue) {
-            if shouldNotify && value != newValue {
-                self.delegate?.valueChanged?(newValue)
-            }
+            operand = String(format: valueFormat, valueDigits, newValue)
+            self.delegate?.valueChanged?(newValue)
         }
     }
     var memoryValue = 0.0 {
         willSet(newValue) {
-            if shouldNotify && memoryValue != newValue {
+            if memoryValue != newValue {
                 self.delegate?.memoryChanged?(newValue)
             }
         }
     }
-
-    var shouldNotify = true
 
     var sign = 1.0
     enum Mode {
@@ -122,7 +119,6 @@ class CalcEngine {
         mode = .CalcOperand
         if let lastValue = valueStack.last {
             value = lastValue
-            operand = String(format: valueFormat, valueDigits, value)
         }
     }
 
@@ -140,7 +136,6 @@ class CalcEngine {
         operatorStack.extend([fn])
         if let lastValue = valueStack.last {
             value = lastValue
-            operand = String(format: valueFormat, valueDigits, value)
         }
     }
 
@@ -171,7 +166,6 @@ class CalcEngine {
         }
         self.popStack()
         value = valueStack.removeAtIndex(0)
-        operand = String(format: valueFormat, valueDigits, value)
         valueStack = [value]
         operatorStack = []
         sign = 1
@@ -195,13 +189,10 @@ class CalcEngine {
 
     func resetToValue(newValue : Double)
     {
-        shouldNotify = false
         allClear()
         value = newValue
         valueStack.append(value)
-        operand = String(format: valueFormat, valueDigits, value)
         mode = .CalcOperand
-        shouldNotify = true
     }
 
     func executeFunction(var operation : MonomialOperator)

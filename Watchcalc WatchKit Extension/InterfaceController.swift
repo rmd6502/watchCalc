@@ -76,27 +76,16 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate {
     func resetValue(userInfo : [NSObject : AnyObject]?)
     {
         WKInterfaceController.openParentApplication(["request": "value"], reply: { (userInfo, error) -> Void in
-            self.engine.shouldNotify = false
             if let newValue = userInfo["value"] as? Double {
                 self.engine.resetToValue(newValue)
             } else {
                 println("Failed: userInfo \(userInfo) error \(error)")
             }
-            self.engine.shouldNotify = true
         })
     }
 
     func buttonPressed(button: String) {
         engine.handleButton(button)
-    }
-
-    func valueChanged(newValue: Double) {
-        valueLabel?.setText(engine.operand)
-        for (var label) in InterfaceController.allValueLabels {
-            if label != valueLabel {
-                label.setText(engine.operand)
-            }
-        }
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { [weak self]() -> Void in
             if let strongSelf = self {
@@ -109,6 +98,15 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate {
                 strongSelf.sharedDefaults?.synchronize()
             }
         })
+    }
+
+    func valueChanged(newValue: Double) {
+        valueLabel?.setText(engine.operand)
+        for (var label) in InterfaceController.allValueLabels {
+            if label != valueLabel {
+                label.setText(engine.operand)
+            }
+        }
     }
 
     func memoryChanged(newValue: Double) {
