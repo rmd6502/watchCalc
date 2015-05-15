@@ -85,9 +85,14 @@ class InterfaceController: WKInterfaceController {
                 label.setText(engine.operand)
             }
         }
-        WKInterfaceController.openParentApplication(["request": "newValue", "value": engine.value], reply: { (userInfo, error) -> Void in
-            println("userInfo \(userInfo) error \(error)")
+
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { [weak self]() -> Void in
+            if let strongSelf = self {
+                WKInterfaceController.openParentApplication(["request": "newValue", "value": strongSelf.engine.value], reply: { (userInfo, error) -> Void in
+                    println("userInfo \(userInfo) error \(error)")
+                })
+                self?.updateUserActivity("com.robertdiamond.watchscicalc.value", userInfo: ["value": strongSelf.engine.value], webpageURL: nil)
+            }
         })
-        self.updateUserActivity("com.robertdiamond.watchscicalc.value", userInfo: ["value": engine.value], webpageURL: nil)
     }
 }

@@ -137,6 +137,7 @@ class CalcEngine {
             valueStack.removeLast()
         }
         operand += button
+        value = atof(operand.cStringUsingEncoding(NSUTF8StringEncoding)!)
         while operand.hasPrefix("0") && count(operand) > 1 {
             operand.removeAtIndex(operand.startIndex)
         }
