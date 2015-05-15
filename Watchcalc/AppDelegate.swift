@@ -53,5 +53,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return false
     }
+
+    func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
+        if let request = userInfo?["request"] as? String {
+            switch request {
+            case "newValue":
+                if let calcVC = self.window?.rootViewController as? CalculatorViewController, newValue = userInfo?["value"] as? Double {
+                    calcVC.resetToValue(newValue)
+                    reply(["success": true])
+                    return
+                }
+            case "value":
+                if let calcVC = self.window?.rootViewController as? CalculatorViewController {
+                    reply(["success": true, "value": calcVC.engine.value])
+                    return
+                }
+            default:
+                break
+            }
+        }
+        reply(["success": false])
+    }
 }
 

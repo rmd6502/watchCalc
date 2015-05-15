@@ -15,6 +15,8 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
 
     var buttonColor = UIColor(red: 31.0/255.0, green: 33.0/255.0, blue: 36.0/255.0, alpha: 1.0)
 
+    var darwinNotificationCenter = CFNotificationCenterGetDarwinNotifyCenter()
+
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,11 +119,14 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
 
             engine.handleButton(button)
             valueLabel?.text = engine.operand
+            let name : CFStringRef! = "button"
+            CFNotificationCenterPostNotification(darwinNotificationCenter, name, nil, nil, Boolean(1))
         }
     }
 
     func resetToValue(value : Double) {
         engine.resetToValue(value)
+        valueLabel?.text = engine.operand
     }
 }
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9C06D1A71B0008E800160A7E /* CalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C06D1A61B0008E800160A7E /* CalcEngine.swift */; };
 		9C2815DB1B042D4F00C163E5 /* CalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C06D1A61B0008E800160A7E /* CalcEngine.swift */; };
+		9C2815DE1B058D0500C163E5 /* DarwinNotificationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2815DD1B058D0500C163E5 /* DarwinNotificationUtilities.m */; };
 		9C61DCEB1AF9B2AB005896A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DCEA1AF9B2AB005896A8 /* AppDelegate.swift */; };
 		9C61DCED1AF9B2AB005896A8 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DCEC1AF9B2AB005896A8 /* CalculatorViewController.swift */; };
 		9C61DCF01AF9B2AB005896A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C61DCEE1AF9B2AB005896A8 /* Main.storyboard */; };
@@ -70,6 +71,9 @@
 
 /* Begin PBXFileReference section */
 		9C06D1A61B0008E800160A7E /* CalcEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcEngine.swift; sourceTree = "<group>"; };
+		9C2815DC1B058D0500C163E5 /* DarwinNotificationUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarwinNotificationUtilities.h; sourceTree = "<group>"; };
+		9C2815DD1B058D0500C163E5 /* DarwinNotificationUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarwinNotificationUtilities.m; sourceTree = "<group>"; };
+		9C2815DF1B058D3800C163E5 /* WatchCalc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WatchCalc-Bridging-Header.h"; sourceTree = "<group>"; };
 		9C61DCE51AF9B2AB005896A8 /* watchscicalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchscicalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C61DCE91AF9B2AB005896A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C61DCEA1AF9B2AB005896A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +193,8 @@
 		9C61DD0F1AF9B2BD005896A8 /* Watchcalc WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				9C2815DC1B058D0500C163E5 /* DarwinNotificationUtilities.h */,
+				9C2815DD1B058D0500C163E5 /* DarwinNotificationUtilities.m */,
 				9CA462FA1B01A26F0041429A /* Watchcalc WatchKit Extension.entitlements */,
 				9C61DD131AF9B2BD005896A8 /* InterfaceController.swift */,
 				9C61DD151AF9B2BD005896A8 /* NotificationController.swift */,
@@ -208,6 +214,7 @@
 			children = (
 				9C61DD111AF9B2BD005896A8 /* Info.plist */,
 				9C61DD121AF9B2BD005896A8 /* PushNotificationPayload.apns */,
+				9C2815DF1B058D3800C163E5 /* WatchCalc-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -423,6 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C2815DE1B058D0500C163E5 /* DarwinNotificationUtilities.m in Sources */,
 				9C61DD161AF9B2BD005896A8 /* NotificationController.swift in Sources */,
 				9C61DD321AF9B433005896A8 /* ButtonRow.swift in Sources */,
 				9C06D1A71B0008E800160A7E /* CalcEngine.swift in Sources */,
@@ -681,6 +689,7 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Watchcalc WatchKit Extension/WatchCalc-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -697,6 +706,7 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Watchcalc WatchKit Extension/WatchCalc-Bridging-Header.h";
 			};
 			name = Release;
 		};

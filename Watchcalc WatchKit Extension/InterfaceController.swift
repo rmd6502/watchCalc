@@ -9,16 +9,14 @@
 import WatchKit
 import Foundation
 
-
 class InterfaceController: WKInterfaceController {
     weak var tableView: WKInterfaceTable!
     weak var valueLabel : WKInterfaceLabel?
 
     static var allValueLabels : [WKInterfaceLabel] = []
-
     var engine : CalcEngine
-
     var keyBindings : [[String]]!
+    let notificationCenter = DarwinNotificationCenter()
 
     override init() {
         engine = CalcEngine.sharedCalcEngine()
@@ -57,11 +55,25 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         valueLabel?.setText(engine.operand)
         super.willActivate()
+        notificationCenter.addObserver(self, selector: "resetValue:", name: "button", userInfo: nil)
     }
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+        notificationCenter.removeObserver(self)
+    }
+
+    func resetValue(userInfo : [NSObject : AnyObject]?)
+    {
+        WKInterfaceController.openParentApplication(["request": "value"], reply: { (userInfo, error) -> Void in
+            if let newValue = userInfo["value"] as? Double {
+                self.engine.resetToValue(newValue)
+                self.valueLabel?.setText(self.engine.operand)
+            } else {
+                println("Failed: userInfo \(userInfo) error \(error)")
+            }
+        })
     }
 
     func buttonPressed(button: String) {
@@ -73,6 +85,9 @@ class InterfaceController: WKInterfaceController {
                 label.setText(engine.operand)
             }
         }
+        WKInterfaceController.openParentApplication(["request": "newValue", "value": engine.value], reply: { (userInfo, error) -> Void in
+            println("userInfo \(userInfo) error \(error)")
+        })
+        self.updateUserActivity("com.robertdiamond.watchscicalc.value", userInfo: ["value": engine.value], webpageURL: nil)
     }
-
 }
