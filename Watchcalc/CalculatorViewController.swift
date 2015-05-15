@@ -24,7 +24,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        sharedDefaults = NSUserDefaults(suiteName: "com.robertdiamond.watchscicalc")
+        sharedDefaults = NSUserDefaults(suiteName: "group.com.robertdiamond.watchscicalc")
         if let storedValue = sharedDefaults?.doubleForKey("value") {
             engine.resetToValue(storedValue)
         }

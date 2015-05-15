@@ -51,7 +51,7 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate {
                 break
             }
         }
-        sharedDefaults = NSUserDefaults(suiteName: "com.robertdiamond.watchscicalc")
+        sharedDefaults = NSUserDefaults(suiteName: "group.com.robertdiamond.watchscicalc")
         if let storedValue = sharedDefaults?.doubleForKey("value") {
             engine.resetToValue(storedValue)
         }
@@ -101,11 +101,8 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate {
     }
 
     func valueChanged(newValue: Double) {
-        valueLabel?.setText(engine.operand)
         for (var label) in InterfaceController.allValueLabels {
-            if label != valueLabel {
                 label.setText(engine.operand)
-            }
         }
     }
 
