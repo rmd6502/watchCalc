@@ -13,7 +13,7 @@ class BasicInterface : InterfaceController {
 
     @IBOutlet weak var basicTable: WKInterfaceTable!
     
-    let basicKeyBindings = [["C","√","1/x","÷"],["9","8","7","✕"],["6","5","4","-"],["3","2","1","+"],["±","0",".","="]]
+    let basicKeyBindings = [["C","√","1/x","÷"],["7","8","9","✕"],["4","5","6","-"],["1","2","3","+"],["±","0",".","="]]
     
     override func awakeWithContext(context: AnyObject?) {
         self.tableView = basicTable
