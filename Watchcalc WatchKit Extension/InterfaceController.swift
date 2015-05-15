@@ -22,7 +22,6 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate {
     override init() {
         engine = CalcEngine.sharedCalcEngine()
         super.init()
-        engine.delegate = self
     }
     
     override func awakeWithContext(context: AnyObject?) {
@@ -59,6 +58,7 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate {
         if let storedValue = sharedDefaults?.doubleForKey("memory") {
             engine.memoryValue = storedValue
         }
+        engine.delegate = self
     }
 
     override func willActivate() {
@@ -76,11 +76,13 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate {
     func resetValue(userInfo : [NSObject : AnyObject]?)
     {
         WKInterfaceController.openParentApplication(["request": "value"], reply: { (userInfo, error) -> Void in
+            self.engine.shouldNotify = false
             if let newValue = userInfo["value"] as? Double {
                 self.engine.resetToValue(newValue)
             } else {
                 println("Failed: userInfo \(userInfo) error \(error)")
             }
+            self.engine.shouldNotify = true
         })
     }
 
