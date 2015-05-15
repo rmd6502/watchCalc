@@ -20,6 +20,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        engine.valueDigits = 16
         let flowLayout = self.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.minimumInteritemSpacing = 3.0
         flowLayout.minimumLineSpacing = 6.0
