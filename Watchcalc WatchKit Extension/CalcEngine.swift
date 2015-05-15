@@ -77,6 +77,9 @@ class CalcEngine {
         value = 0.0
         operand = "0"
         sign = 1
+        if mode == .CalcOperand && valueStack.count > 0 {
+            valueStack.removeAtIndex(0)
+        }
         mode = .Operand
     }
 
