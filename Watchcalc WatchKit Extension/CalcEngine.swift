@@ -112,8 +112,6 @@ class CalcEngine {
     {
         if mode == .Operand {
             pushValue()
-        } else if mode == .Operator {
-            operatorStack.removeLast()
         }
         self.executeFunction(fn)
         mode = .CalcOperand
@@ -198,7 +196,7 @@ class CalcEngine {
     func executeFunction(var operation : MonomialOperator)
     {
         var value = 0.0
-        if valueStack.count > 0 {
+        if valueStack.count > 0 && (mode == .Operand || mode == .CalcOperand) {
             value = valueStack.removeLast()
         }
         switch operation {

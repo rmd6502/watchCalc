@@ -92,4 +92,26 @@ class WatchcalcTests: XCTestCase {
         engine.handleButton("=")
         XCTAssertEqual(engine.value, 2053, "ResetToValue fail")
     }
+
+    func testCalcOperand() {
+        engine.handleButton("2")
+        engine.handleButton("+")
+        engine.handleButton("e")
+        engine.handleButton("=")
+        XCTAssertEqual(engine.value, M_E+2, "CalcOperand Test Failed")
+
+        engine.handleButton("2")
+        engine.handleButton("+")
+        engine.handleButton("4")
+        engine.handleButton("√")
+        engine.handleButton("=")
+        XCTAssertEqual(engine.value, 4, "Second CalcOperand Test Failed")
+
+        engine.handleButton("4")
+        engine.handleButton("√")
+        engine.handleButton("+")
+        engine.handleButton("2")
+        engine.handleButton("=")
+        XCTAssertEqual(engine.value, 4, "First CalcOperand Test Failed")
+    }
 }
