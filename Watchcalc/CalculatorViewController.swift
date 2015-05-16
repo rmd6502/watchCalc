@@ -122,6 +122,9 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     // MARK: Actions
     func buttonColorForButton(title : String!) -> UIColor
     {
+        if title == nil {
+            return scientificButtonColor
+        }
         switch title {
         case "C": return clearButtonColor
         case "=": return equalButtonColor
