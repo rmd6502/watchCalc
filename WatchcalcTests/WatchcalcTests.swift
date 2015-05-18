@@ -68,11 +68,13 @@ class WatchcalcTests: XCTestCase {
         engine.handleButton("=")
         engine.handleButton("C")
         XCTAssertEqual(engine.operand, "0", "Didn't clear operand")
+
         engine.handleButton("2")
         engine.handleButton("+")
         engine.handleButton("7")
         engine.handleButton("=")
         XCTAssertEqual(engine.operand, "9", "Clear didn't clear operand stack")
+        
         engine.handleButton("5")
         engine.handleButton("5")
         engine.handleButton("✕")

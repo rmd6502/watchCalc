@@ -45,6 +45,12 @@ enum BinomialOperator : String {
     optional func memoryChanged(newValue : Double)
 }
 
+struct CalcRegister {
+    var op1 : Double
+    var op2 : Double?
+    var operation : String  // MonomialObject or BinomialObject
+}
+
 class CalcEngine {
     var value = 0.0 {
         willSet(newValue) {
@@ -73,9 +79,14 @@ class CalcEngine {
     var valueDigits = 10
     var delegate : CalcEngineDelegate?
 
+    var register : [CalcRegister] = []
+    let DEFAULT_MAX_REGISTER_SIZE = 20
+    var maxRegisterSize : Int
+
     private init()
     {
         // Does nothing but ensures everyone uses the sharedEngine
+        maxRegisterSize = DEFAULT_MAX_REGISTER_SIZE
     }
 
     class func sharedCalcEngine() -> CalcEngine
@@ -151,7 +162,9 @@ class CalcEngine {
             valueStack.removeLast()
         }
         operand += button
-        value = atof(operand.cStringUsingEncoding(NSUTF8StringEncoding)!)
+        let savedOperand = self.operand
+        value = atof(self.operand.cStringUsingEncoding(NSUTF8StringEncoding)!)
+        operand = savedOperand
         while operand.hasPrefix("0") && count(operand) > 1 {
             operand.removeAtIndex(operand.startIndex)
         }
@@ -199,6 +212,7 @@ class CalcEngine {
         if valueStack.count > 0 && (mode == .Operand || mode == .CalcOperand) {
             value = valueStack.removeLast()
         }
+        register.append(CalcRegister(op1: value, op2: nil, operation: operation.rawValue))
         switch operation {
         case .reciprocal:
             value = 1.0/value
@@ -279,6 +293,7 @@ class CalcEngine {
 
     func performOperation(op : BinomialOperator, v1 : Double, v2 : Double) -> Double
     {
+        register.append(CalcRegister(op1: v1, op2: v2, operation: op.rawValue))
         switch op {
         case .plus:
             return v1 + v2
@@ -315,6 +330,9 @@ class CalcEngine {
                 println("You need to write the handler for \(button)")
                 return false
             }
+        }
+        while register.count > maxRegisterSize {
+            register.removeAtIndex(0)
         }
         return true
     }
