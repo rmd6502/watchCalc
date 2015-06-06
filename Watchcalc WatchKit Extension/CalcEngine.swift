@@ -209,8 +209,12 @@ class CalcEngine {
     func executeFunction(var operation : MonomialOperator)
     {
         var value = 0.0
-        if valueStack.count > 0 && (mode == .Operand || mode == .CalcOperand) {
-            value = valueStack.removeLast()
+        if valueStack.count > 0 {
+            if (mode == .Operand || mode == .CalcOperand) {
+                value = valueStack.removeLast()
+            } else {
+                value = valueStack.last!
+            }
         }
         register.append(CalcRegister(op1: value, op2: nil, operation: operation.rawValue))
         switch operation {
