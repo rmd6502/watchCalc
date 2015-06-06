@@ -23,4 +23,5 @@ class CalculatorButton : UICollectionViewCell {
 class CalculatorHeader : UICollectionReusableView {
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var valueLabelContainer: UIView!
+    @IBOutlet weak var registerTable: UITableView!
 }

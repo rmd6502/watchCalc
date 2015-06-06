@@ -155,12 +155,12 @@
 			isa = PBXGroup;
 			children = (
 				9C61DCEA1AF9B2AB005896A8 /* AppDelegate.swift */,
+				9CA462FB1B02CADA0041429A /* CalculatorButton.swift */,
 				9C61DCEC1AF9B2AB005896A8 /* CalculatorViewController.swift */,
 				9C61DCEE1AF9B2AB005896A8 /* Main.storyboard */,
 				9C61DCF11AF9B2AB005896A8 /* Images.xcassets */,
 				9C61DCF31AF9B2AB005896A8 /* LaunchScreen.xib */,
 				9C61DCE81AF9B2AB005896A8 /* Supporting Files */,
-				9CA462FB1B02CADA0041429A /* CalculatorButton.swift */,
 			);
 			path = Watchcalc;
 			sourceTree = "<group>";

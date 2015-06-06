@@ -48,6 +48,7 @@ enum BinomialOperator : String {
 struct CalcRegister {
     var op1 : Double
     var op2 : Double?
+    var result : Double
     var operation : String  // MonomialObject or BinomialObject
 }
 
@@ -216,7 +217,6 @@ class CalcEngine {
                 value = valueStack.last!
             }
         }
-        register.append(CalcRegister(op1: value, op2: nil, operation: operation.rawValue))
         switch operation {
         case .reciprocal:
             value = 1.0/value
@@ -261,6 +261,7 @@ class CalcEngine {
         default:
             break
         }
+        register.append(CalcRegister(op1: value, op2: nil, result: value, operation: operation.rawValue))
         valueStack.extend([value])
     }
 
@@ -297,23 +298,25 @@ class CalcEngine {
 
     func performOperation(op : BinomialOperator, v1 : Double, v2 : Double) -> Double
     {
-        register.append(CalcRegister(op1: v1, op2: v2, operation: op.rawValue))
+        var result : Double = 0
         switch op {
         case .plus:
-            return v1 + v2
+            result = v1 + v2
         case .minus:
-            return v1 - v2
+            result = v1 - v2
         case .div:
-            return v1 / v2
+            result = v1 / v2
         case .times:
-            return v1 * v2
+            result = v1 * v2
         case .power:
-            return pow(v1, v2)
+            result = pow(v1, v2)
         case .exponent:
-            return v1 * pow(10.0,v2)
+            result = v1 * pow(10.0,v2)
         default:
-            return 0
+            result = 0
         }
+        register.append(CalcRegister(op1: v1, op2: v2, result: result, operation: op.rawValue))
+        return result
     }
 
     func handleButton(button : String) -> Bool

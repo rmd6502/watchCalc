@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IcP-06-0tN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IcP-06-0tN">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -64,8 +64,12 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lvc-SD-u89">
                                     <rect key="frame" x="4" y="20" width="592" height="30"/>
                                     <subviews>
+                                        <tableView clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Fh1-SJ-Ftj">
+                                            <rect key="frame" x="0.0" y="0.0" width="592" height="0.0"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </tableView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vlz-cH-WAM">
-                                            <rect key="frame" x="0.0" y="2" width="584" height="20"/>
+                                            <rect key="frame" x="0.0" y="8" width="584" height="14"/>
                                             <accessibility key="accessibilityConfiguration" hint="value" label="value"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -76,9 +80,13 @@
                                     <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="Vlz-cH-WAM" secondAttribute="bottom" id="Hel-un-S0J"/>
+                                        <constraint firstAttribute="trailing" secondItem="Fh1-SJ-Ftj" secondAttribute="trailing" id="Kgj-gU-6z0"/>
                                         <constraint firstItem="Vlz-cH-WAM" firstAttribute="leading" secondItem="lvc-SD-u89" secondAttribute="leading" id="RDz-70-QrM"/>
+                                        <constraint firstItem="Fh1-SJ-Ftj" firstAttribute="leading" secondItem="lvc-SD-u89" secondAttribute="leading" id="Vhh-au-dTo"/>
+                                        <constraint firstItem="Vlz-cH-WAM" firstAttribute="top" secondItem="Fh1-SJ-Ftj" secondAttribute="bottom" constant="8" id="d8y-Ai-E18"/>
                                         <constraint firstItem="Vlz-cH-WAM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="lvc-SD-u89" secondAttribute="top" id="dBd-5i-aQx"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Vlz-cH-WAM" secondAttribute="trailing" id="hCI-5u-PPr"/>
+                                        <constraint firstItem="Fh1-SJ-Ftj" firstAttribute="top" secondItem="lvc-SD-u89" secondAttribute="top" id="hzP-Le-whW"/>
                                     </constraints>
                                     <connections>
                                         <outletCollection property="gestureRecognizers" destination="dGb-Sc-gKR" appends="YES" id="Ue9-jn-OWv"/>
@@ -92,6 +100,7 @@
                                 <constraint firstItem="lvc-SD-u89" firstAttribute="top" secondItem="8iv-N3-Zmv" secondAttribute="top" constant="20" id="mAb-FV-P3h"/>
                             </constraints>
                             <connections>
+                                <outlet property="registerTable" destination="Fh1-SJ-Ftj" id="yLV-VN-uCs"/>
                                 <outlet property="valueLabel" destination="Vlz-cH-WAM" id="DNF-5i-Jgv"/>
                                 <outlet property="valueLabelContainer" destination="lvc-SD-u89" id="AIi-Ri-EBg"/>
                             </connections>

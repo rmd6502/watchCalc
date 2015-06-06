@@ -8,8 +8,9 @@
 
 import UIKit
 
-class CalculatorViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CalcEngineDelegate {
+class CalculatorViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CalcEngineDelegate, UITableViewDataSource, UITableViewDelegate {
     var valueLabel : UILabel?
+    var registerTable : UITableView?
     let buttons = ["C","√","1/x","÷","7","8","9","✕","4","5","6","-","1","2","3","+","±","0",".","=","sin","cos","tan","π","eˣ","yˣ","lnx","log","x²","x³","∛","rnd","MC","M+","M-","MR","x!","e","EE",""]
     let engine = CalcEngine.sharedCalcEngine()
 
@@ -96,6 +97,9 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
             displayHeader = headerView
             self.valueLabel = headerView.valueLabel
             headerView.valueLabelContainer.layer.cornerRadius = 6
+            self.registerTable = headerView.registerTable
+            self.registerTable?.dataSource = self
+            self.registerTable?.delegate = self
             return headerView
         } else {
             return UICollectionReusableView()
@@ -109,6 +113,36 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
 
             engine.handleButton(button)
         }
+    }
+
+    // MARK: Table View Delegate (Register TableView)
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return engine.register.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell : UITableViewCell?
+        cell = tableView.dequeueReusableCellWithIdentifier("RegisterCell") as? UITableViewCell
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "RegisterCell")
+            cell?.textLabel?.textColor = UIColor.whiteColor()
+            cell?.detailTextLabel?.textColor = UIColor.lightGrayColor()
+            cell?.backgroundColor = UIColor.clearColor()
+        }
+
+        let register = engine.register[indexPath.row]
+        if register.op2 == nil {
+            cell?.textLabel?.text = "\(register.operation) \(register.op1)"
+        } else {
+            cell?.textLabel?.text = "\(register.op1) \(register.operation) \(register.op2!)"
+        }
+        cell?.detailTextLabel?.text = "\(register.result)"
+
+        return cell!
     }
 
     // MARK: Flow Layout Delegate
@@ -186,18 +220,23 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
         case .Changed:
             if point.y > -10 {
                 displayHeight = displayClosedHeight + max(0, min(displayOpenHeight - displayClosedHeight, point.y))
+                self.registerTable?.alpha = displayHeight / displayOpenHeight
                 self.view.setNeedsUpdateConstraints()
                 self.collectionView?.reloadData()
+                self.registerTable?.reloadData()
             }
         case .Ended:
             UIView.animateWithDuration(0.25, animations: { () -> Void in
                 if point.y > (self.displayOpenHeight - self.displayClosedHeight)/2 {
                     self.displayHeight = self.displayOpenHeight
+                    self.registerTable?.alpha = 1.0
                 } else {
                     self.displayHeight = self.displayClosedHeight
+                    self.registerTable?.alpha = 0.0
                 }
                 self.view.setNeedsUpdateConstraints()
                 self.collectionView?.reloadData()
+                self.registerTable?.reloadData()
             })
         default:
             break
