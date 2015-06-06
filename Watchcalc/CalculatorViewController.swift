@@ -22,6 +22,13 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     var darwinNotificationCenter = CFNotificationCenterGetDarwinNotifyCenter()
     var sharedDefaults : NSUserDefaults!
 
+    let displayClosedHeight : CGFloat = 60.0
+    let displayOpenHeight : CGFloat = 360.0
+    var displayHeight : CGFloat = 0.0
+    var displayHeader : UIView!
+
+    @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
+
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         sharedDefaults = NSUserDefaults(suiteName: "group.com.robertdiamond.watchscicalc")
@@ -31,6 +38,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
         if let storedValue = sharedDefaults?.doubleForKey("memory") {
             engine.memoryValue = storedValue
         }
+        displayHeight = displayClosedHeight
     }
 
     // MARK: Life Cycle
@@ -85,6 +93,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
 
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         if let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "CalculatorValueHeader", forIndexPath: indexPath) as? CalculatorHeader {
+            displayHeader = headerView
             self.valueLabel = headerView.valueLabel
             headerView.valueLabelContainer.layer.cornerRadius = 6
             return headerView
@@ -114,7 +123,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         println("size \(self.view.frame)")
         let width = self.view.bounds.width - 10.0
-        let height = CGFloat(60.0)
+        let height = CGFloat(displayHeight)
 
         return CGSize(width: width, height: height)
     }
@@ -167,6 +176,31 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
                 self.sharedDefaults?.setDouble(self.engine.value, forKey: "value")
                 self.sharedDefaults?.synchronize()
             })
+        }
+    }
+
+    @IBAction func didPan(sender: UIPanGestureRecognizer) {
+        let point = sender.locationInView(self.view)
+        println("pan action: \(point) state \(sender.state.rawValue)")
+        switch sender.state {
+        case .Changed:
+            if point.y > -10 {
+                displayHeight = displayClosedHeight + max(0, min(displayOpenHeight - displayClosedHeight, point.y))
+                self.view.setNeedsUpdateConstraints()
+                self.collectionView?.reloadData()
+            }
+        case .Ended:
+            UIView.animateWithDuration(0.25, animations: { () -> Void in
+                if point.y > (self.displayOpenHeight - self.displayClosedHeight)/2 {
+                    self.displayHeight = self.displayOpenHeight
+                } else {
+                    self.displayHeight = self.displayClosedHeight
+                }
+                self.view.setNeedsUpdateConstraints()
+                self.collectionView?.reloadData()
+            })
+        default:
+            break
         }
     }
 
