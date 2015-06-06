@@ -11,7 +11,7 @@ import UIKit
 class CalculatorViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CalcEngineDelegate, UITableViewDataSource, UITableViewDelegate {
     var valueLabel : UILabel?
     var registerTable : UITableView?
-    let buttons = ["C","√","1/x","÷","7","8","9","✕","4","5","6","-","1","2","3","+","±","0",".","=","sin","cos","tan","π","eˣ","yˣ","lnx","log","x²","x³","∛","rnd","MC","M+","M-","MR","x!","e","EE",""]
+    let buttons = ["C","√","1/x","÷","7","8","9","✕","4","5","6","-","1","2","3","+","±","0",".","=","sin","cos","tan","π","eˣ","yˣ","lnx","log","x²","x³","∛","rnd","MC","M+","M-","MR","x!","e","EE","Register"]
     let engine = CalcEngine.sharedCalcEngine()
 
     var operatorButtonColor = UIColor(red: 31.0/255.0, green: 33.0/255.0, blue: 36.0/255.0, alpha: 1.0)
@@ -170,7 +170,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
         }
         switch title {
         case "C": return clearButtonColor
-        case "=": return equalButtonColor
+        case "=","Register": return equalButtonColor
         case "1/x": return scientificButtonColor
         case "0"..."9",".","±": return operandButtonColor
         case "+","-","÷","✕": return operatorButtonColor
@@ -203,13 +203,21 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
                 })
             })
 
-            engine.handleButton(button)
-            let name : CFStringRef! = "button"
-            CFNotificationCenterPostNotification(darwinNotificationCenter, name, nil, nil, Boolean(1))
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                self.sharedDefaults?.setDouble(self.engine.value, forKey: "value")
-                self.sharedDefaults?.synchronize()
-            })
+            if button == "Register" {
+                displayHeight = (displayHeight == displayOpenHeight) ? displayClosedHeight : displayOpenHeight
+                self.registerTable?.alpha = (displayHeight == displayOpenHeight) ? 0.0 : 1.0
+                self.view.setNeedsUpdateConstraints()
+                self.collectionView?.reloadData()
+                self.registerTable?.reloadData()
+            } else {
+                engine.handleButton(button)
+                let name : CFStringRef! = "button"
+                CFNotificationCenterPostNotification(darwinNotificationCenter, name, nil, nil, Boolean(1))
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+                    self.sharedDefaults?.setDouble(self.engine.value, forKey: "value")
+                    self.sharedDefaults?.synchronize()
+                })
+            }
         }
     }
 
