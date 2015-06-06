@@ -155,7 +155,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        println("size \(self.view.frame)")
+        //println("size \(self.view.frame)")
         let width = self.view.bounds.width - 10.0
         let height = CGFloat(displayHeight)
 
@@ -223,7 +223,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
 
     @IBAction func didPan(sender: UIPanGestureRecognizer) {
         let point = sender.locationInView(self.view)
-        println("pan action: \(point) state \(sender.state.rawValue)")
+        //println("pan action: \(point) state \(sender.state.rawValue)")
         switch sender.state {
         case .Changed:
             if point.y > -10 {
