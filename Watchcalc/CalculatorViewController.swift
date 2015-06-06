@@ -204,11 +204,18 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
             })
 
             if button == "Register" {
-                displayHeight = (displayHeight == displayOpenHeight) ? displayClosedHeight : displayOpenHeight
-                self.registerTable?.alpha = (displayHeight == displayOpenHeight) ? 0.0 : 1.0
-                self.view.setNeedsUpdateConstraints()
-                self.collectionView?.reloadData()
-                self.registerTable?.reloadData()
+                UIView.animateWithDuration(0.25, animations: { () -> Void in
+                    self.displayHeight = (self.displayHeight == self.displayOpenHeight) ? self.displayClosedHeight : self.displayOpenHeight
+                    self.registerTable?.alpha = (self.displayHeight == self.displayOpenHeight) ? 0.0 : 1.0
+                    var bounds = self.displayHeader.frame
+                    bounds.size.height = self.displayHeight
+                    self.displayHeader.frame = bounds
+                    self.view.setNeedsUpdateConstraints()
+                }, completion: { (success) -> Void in
+                    self.view.setNeedsUpdateConstraints()
+                    self.collectionView?.reloadData()
+                    self.registerTable?.reloadData()
+                })
             } else {
                 engine.handleButton(button)
                 let name : CFStringRef! = "button"
