@@ -109,7 +109,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     // MARK: Collection View Delegate
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CalculatorButton, button = cell.calcButton.titleLabel?.text {
-            println("selected \(button)")
+            print("selected \(button)")
 
             engine.handleButton(button)
         }
@@ -126,7 +126,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell : UITableViewCell?
-        cell = tableView.dequeueReusableCellWithIdentifier("RegisterCell") as? UITableViewCell
+        cell = tableView.dequeueReusableCellWithIdentifier("RegisterCell")
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "RegisterCell")
             cell?.textLabel?.textColor = UIColor.whiteColor()
@@ -181,7 +181,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     func buttonHighlightColorForButton(title : String!) -> UIColor
     {
         var hue = CGFloat(0.0), sat = CGFloat(0.0), value = CGFloat(0.0), alpha = CGFloat(0.0)
-        var color = buttonColorForButton(title)
+        let color = buttonColorForButton(title)
         color.getHue(&hue, saturation: &sat, brightness: &value, alpha: &alpha)
         return UIColor(hue: hue, saturation: sat, brightness: min(value*1.4, 1.0), alpha: 1.0)
     }

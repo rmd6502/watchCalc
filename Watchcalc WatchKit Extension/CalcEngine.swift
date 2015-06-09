@@ -142,7 +142,7 @@ class CalcEngine {
             }
             mode = .Operator
         }
-        popStack(lastOp: fn)
+        popStack(fn)
         operatorStack.extend([fn])
         if let lastValue = valueStack.last {
             value = lastValue
@@ -166,7 +166,7 @@ class CalcEngine {
         let savedOperand = self.operand
         value = atof(self.operand.cStringUsingEncoding(NSUTF8StringEncoding)!)
         operand = savedOperand
-        while operand.hasPrefix("0") && count(operand) > 1 {
+        while operand.hasPrefix("0") && operand.characters.count > 1 {
             operand.removeAtIndex(operand.startIndex)
         }
     }
@@ -186,7 +186,7 @@ class CalcEngine {
 
     func doClear()
     {
-        if operand != "0" && count(operand) > 0 {
+        if operand != "0" && operand.characters.count > 0 {
             clear()
         } else {
             allClear()
@@ -207,7 +207,7 @@ class CalcEngine {
         mode = .CalcOperand
     }
 
-    func executeFunction(var operation : MonomialOperator)
+    func executeFunction(operation : MonomialOperator)
     {
         var value = 0.0
         if valueStack.count > 0 {
@@ -274,13 +274,13 @@ class CalcEngine {
         }
     }
 
-    func popStack(var lastOp : BinomialOperator? = nil)
+    func popStack(lastOp : BinomialOperator? = nil)
     {
         var lastOpPrec = -1
         if let lastOperator = lastOp, precedence = precedences[lastOperator] {
             lastOpPrec = precedence
         }
-        println("operators \(self.operatorStack) values \(self.valueStack) lastOp \(lastOp)")
+        print("operators \(self.operatorStack) values \(self.valueStack) lastOp \(lastOp)")
         while operatorStack.count > 0 && valueStack.count > 1 {
             let op = operatorStack.last!
             if let precedence = precedences[op] {
@@ -334,7 +334,7 @@ class CalcEngine {
             case "=":
                 handleEqual()
             default:
-                println("You need to write the handler for \(button)")
+                print("You need to write the handler for \(button)")
                 return false
             }
         }

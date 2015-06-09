@@ -10,6 +10,8 @@
 		9C06D1A71B0008E800160A7E /* CalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C06D1A61B0008E800160A7E /* CalcEngine.swift */; };
 		9C2815DB1B042D4F00C163E5 /* CalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C06D1A61B0008E800160A7E /* CalcEngine.swift */; };
 		9C2815DE1B058D0500C163E5 /* DarwinNotificationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2815DD1B058D0500C163E5 /* DarwinNotificationUtilities.m */; };
+		9C3DA21A1B26700F002983F9 /* Watchcalc WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9C61DD0E1AF9B2BD005896A8 /* Watchcalc WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9C3DA21D1B26700F002983F9 /* Watchcalc WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9C61DD1B1AF9B2BD005896A8 /* Watchcalc WatchKit App.app */; };
 		9C61DCEB1AF9B2AB005896A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DCEA1AF9B2AB005896A8 /* AppDelegate.swift */; };
 		9C61DCED1AF9B2AB005896A8 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DCEC1AF9B2AB005896A8 /* CalculatorViewController.swift */; };
 		9C61DCF01AF9B2AB005896A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C61DCEE1AF9B2AB005896A8 /* Main.storyboard */; };
@@ -19,10 +21,8 @@
 		9C61DD141AF9B2BD005896A8 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DD131AF9B2BD005896A8 /* InterfaceController.swift */; };
 		9C61DD161AF9B2BD005896A8 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DD151AF9B2BD005896A8 /* NotificationController.swift */; };
 		9C61DD181AF9B2BD005896A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C61DD171AF9B2BD005896A8 /* Images.xcassets */; };
-		9C61DD1C1AF9B2BD005896A8 /* Watchcalc WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 9C61DD1B1AF9B2BD005896A8 /* Watchcalc WatchKit App.app */; };
 		9C61DD241AF9B2BD005896A8 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C61DD221AF9B2BD005896A8 /* Interface.storyboard */; };
 		9C61DD261AF9B2BD005896A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C61DD251AF9B2BD005896A8 /* Images.xcassets */; };
-		9C61DD291AF9B2BD005896A8 /* Watchcalc WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9C61DD0E1AF9B2BD005896A8 /* Watchcalc WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9C61DD321AF9B433005896A8 /* ButtonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DD311AF9B433005896A8 /* ButtonRow.swift */; };
 		9C61DD341AF9B43F005896A8 /* ValueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DD331AF9B43F005896A8 /* ValueRow.swift */; };
 		9C61DD361AFAE6D3005896A8 /* BasicInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DD351AFAE6D3005896A8 /* BasicInterface.swift */; };
@@ -32,6 +32,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9C3DA2181B26700F002983F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C61DCDD1AF9B2AB005896A8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C61DD0D1AF9B2BD005896A8;
+			remoteInfo = "Watchcalc WatchKit Extension";
+		};
+		9C3DA21B1B26700F002983F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C61DCDD1AF9B2AB005896A8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C61DD1A1AF9B2BD005896A8;
+			remoteInfo = "Watchcalc WatchKit App";
+		};
 		9C61DCFB1AF9B2AB005896A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9C61DCDD1AF9B2AB005896A8 /* Project object */;
@@ -39,32 +53,29 @@
 			remoteGlobalIDString = 9C61DCE41AF9B2AB005896A8;
 			remoteInfo = Watchcalc;
 		};
-		9C61DD1D1AF9B2BD005896A8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9C61DCDD1AF9B2AB005896A8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9C61DD1A1AF9B2BD005896A8;
-			remoteInfo = "Watchcalc WatchKit App";
-		};
-		9C61DD271AF9B2BD005896A8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9C61DCDD1AF9B2AB005896A8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9C61DD0D1AF9B2BD005896A8;
-			remoteInfo = "Watchcalc WatchKit Extension";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9C61DD301AF9B2BD005896A8 /* Embed App Extensions */ = {
+		9C3DA21E1B26700F002983F9 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				9C61DD291AF9B2BD005896A8 /* Watchcalc WatchKit Extension.appex in Embed App Extensions */,
+				9C3DA21A1B26700F002983F9 /* Watchcalc WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C3DA21F1B26700F002983F9 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				9C3DA21D1B26700F002983F9 /* Watchcalc WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -247,12 +258,12 @@
 				9C61DCE11AF9B2AB005896A8 /* Sources */,
 				9C61DCE21AF9B2AB005896A8 /* Frameworks */,
 				9C61DCE31AF9B2AB005896A8 /* Resources */,
-				9C61DD301AF9B2BD005896A8 /* Embed App Extensions */,
+				9C3DA21F1B26700F002983F9 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9C61DD281AF9B2BD005896A8 /* PBXTargetDependency */,
+				9C3DA21C1B26700F002983F9 /* PBXTargetDependency */,
 			);
 			name = watchscicalc;
 			productName = Watchcalc;
@@ -288,27 +299,28 @@
 			buildRules = (
 			);
 			dependencies = (
-				9C61DD1E1AF9B2BD005896A8 /* PBXTargetDependency */,
 			);
 			name = "Watchcalc WatchKit Extension";
 			productName = "Watchcalc WatchKit Extension";
 			productReference = 9C61DD0E1AF9B2BD005896A8 /* Watchcalc WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit-extension";
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		9C61DD1A1AF9B2BD005896A8 /* Watchcalc WatchKit App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C61DD2A1AF9B2BD005896A8 /* Build configuration list for PBXNativeTarget "Watchcalc WatchKit App" */;
 			buildPhases = (
 				9C61DD191AF9B2BD005896A8 /* Resources */,
+				9C3DA21E1B26700F002983F9 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9C3DA2191B26700F002983F9 /* PBXTargetDependency */,
 			);
 			name = "Watchcalc WatchKit App";
 			productName = "Watchcalc WatchKit App";
 			productReference = 9C61DD1B1AF9B2BD005896A8 /* Watchcalc WatchKit App.app */;
-			productType = "com.apple.product-type.application.watchapp";
+			productType = "com.apple.product-type.application.watchapp2";
 		};
 /* End PBXNativeTarget section */
 
@@ -316,7 +328,8 @@
 		9C61DCDD1AF9B2AB005896A8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Robert Diamond";
 				TargetAttributes = {
 					9C61DCE41AF9B2AB005896A8 = {
@@ -390,7 +403,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C61DD181AF9B2BD005896A8 /* Images.xcassets in Resources */,
-				9C61DD1C1AF9B2BD005896A8 /* Watchcalc WatchKit App.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,20 +456,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9C3DA2191B26700F002983F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C61DD0D1AF9B2BD005896A8 /* Watchcalc WatchKit Extension */;
+			targetProxy = 9C3DA2181B26700F002983F9 /* PBXContainerItemProxy */;
+		};
+		9C3DA21C1B26700F002983F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C61DD1A1AF9B2BD005896A8 /* Watchcalc WatchKit App */;
+			targetProxy = 9C3DA21B1B26700F002983F9 /* PBXContainerItemProxy */;
+		};
 		9C61DCFC1AF9B2AB005896A8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9C61DCE41AF9B2AB005896A8 /* watchscicalc */;
 			targetProxy = 9C61DCFB1AF9B2AB005896A8 /* PBXContainerItemProxy */;
-		};
-		9C61DD1E1AF9B2BD005896A8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9C61DD1A1AF9B2BD005896A8 /* Watchcalc WatchKit App */;
-			targetProxy = 9C61DD1D1AF9B2BD005896A8 /* PBXContainerItemProxy */;
-		};
-		9C61DD281AF9B2BD005896A8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9C61DD0D1AF9B2BD005896A8 /* Watchcalc WatchKit Extension */;
-			targetProxy = 9C61DD271AF9B2BD005896A8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -510,6 +522,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -583,6 +596,7 @@
 				INFOPLIST_FILE = Watchcalc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -601,6 +615,7 @@
 				INFOPLIST_FILE = Watchcalc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -621,6 +636,7 @@
 				);
 				INFOPLIST_FILE = WatchcalcTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.robertdiamond.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Watchcalc.app/Watchcalc";
 			};
@@ -635,6 +651,7 @@
 				);
 				INFOPLIST_FILE = WatchcalcTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.robertdiamond.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Watchcalc.app/Watchcalc";
 			};
@@ -644,17 +661,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				IBSC_MODULE = Watchcalc_WatchKit_Extension;
 				INFOPLIST_FILE = "Watchcalc WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_BUNDLE_IDENTIFIER = watchscicalc.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -662,13 +681,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = Watchcalc_WatchKit_Extension;
 				INFOPLIST_FILE = "Watchcalc WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_BUNDLE_IDENTIFIER = watchscicalc.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -686,10 +707,14 @@
 				INFOPLIST_FILE = "Watchcalc WatchKit Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = watchscicalc.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Watchcalc WatchKit Extension/WatchCalc-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -703,10 +728,14 @@
 				INFOPLIST_FILE = "Watchcalc WatchKit Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = watchscicalc.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Watchcalc WatchKit Extension/WatchCalc-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};

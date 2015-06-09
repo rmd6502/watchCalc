@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]!) -> Void) -> Bool {
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
         switch userActivity.activityType {
         case "com.robertdiamond.watchscicalc.value":
             if let calcVC = self.window?.rootViewController as? CalculatorViewController, newValue = userActivity.userInfo?["value"] as? Double {
@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
 
-    func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
+    func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: ([NSObject : AnyObject]?) -> Void) {
         if let request = userInfo?["request"] as? String {
             switch request {
             case "newValue":
@@ -65,6 +65,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             case "value":
                 if let calcVC = self.window?.rootViewController as? CalculatorViewController {
+                    reply(["success": true, "value": calcVC.engine.value])
+                    return
+                }
+            case "appendRegister":
+                if let calcVC = self.window?.rootViewController as? CalculatorViewController {
+                    if let op1 = userInfo?["op1"] as? Double, op2 = userInfo?["op2"] as? Double?, result = userInfo?["result"] as? Double, operation = userInfo?["operation"] as? String {
+                        calcVC.engine.register.append(CalcRegister(op1: op1, op2: op2, result: result, operation: operation))
+                    }
                     reply(["success": true, "value": calcVC.engine.value])
                     return
                 }

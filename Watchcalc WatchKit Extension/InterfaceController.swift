@@ -29,7 +29,7 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate {
         engine.allClear()
         tableView.setRowTypes(["ValueRow", "ButtonRow", "ButtonRow", "ButtonRow", "ButtonRow","ButtonRow"])
         var buttonIdx = 0
-        var buttonWidth = (self.contentFrame.width - 16.0) / 4.0
+        let buttonWidth = (self.contentFrame.width - 16.0) / 4.0
         for (var rowNum = 0; rowNum < tableView.numberOfRows; ++rowNum) {
             switch tableView.rowControllerAtIndex(rowNum) {
             case let valueRow as ValueRow:
@@ -40,7 +40,7 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate {
                     InterfaceController.allValueLabels.append(valueLabel!)
                 }
             case let buttonRow as ButtonRow:
-                println("key \(self.keyBindings[buttonIdx])")
+                print("key \(self.keyBindings[buttonIdx])")
                 buttonRow.mainGroup?.setWidth(self.contentFrame.width)
                 buttonRow.keys = self.keyBindings[buttonIdx++]
                 buttonRow.buttonWidth = buttonWidth
@@ -79,7 +79,7 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate {
             if let newValue = userInfo["value"] as? Double {
                 self.engine.resetToValue(newValue)
             } else {
-                println("Failed: userInfo \(userInfo) error \(error)")
+                print("Failed: userInfo \(userInfo) error \(error)")
             }
         })
     }
@@ -90,7 +90,7 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { [weak self]() -> Void in
             if let strongSelf = self {
                 WKInterfaceController.openParentApplication(["request": "newValue", "value": strongSelf.engine.value], reply: { (userInfo, error) -> Void in
-                    println("userInfo \(userInfo) error \(error)")
+                    print("userInfo \(userInfo) error \(error)")
                 })
                 strongSelf.updateUserActivity("com.robertdiamond.watchscicalc.value", userInfo: ["value": strongSelf.engine.value], webpageURL: nil)
 
