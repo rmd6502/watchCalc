@@ -6,10 +6,11 @@
 //  Copyright (c) 2015 Robert Diamond. All rights reserved.
 //
 
+import WatchConnectivity
 import WatchKit
 import Foundation
 
-class InterfaceController: WKInterfaceController, CalcEngineDelegate {
+class InterfaceController: WKInterfaceController, CalcEngineDelegate, WCSessionDelegate {
     weak var tableView: WKInterfaceTable!
     weak var valueLabel : WKInterfaceLabel?
 
@@ -27,6 +28,7 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         engine.allClear()
+        WCSession.defaultSession().delegate = self
         tableView.setRowTypes(["ValueRow", "ButtonRow", "ButtonRow", "ButtonRow", "ButtonRow","ButtonRow"])
         var buttonIdx = 0
         let buttonWidth = (self.contentFrame.width - 16.0) / 4.0
@@ -75,33 +77,33 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate {
 
     func resetValue(userInfo : [NSObject : AnyObject]?)
     {
-        WKInterfaceController.openParentApplication(["request": "value"], reply: { (userInfo, error) -> Void in
-            if let newValue = userInfo["value"] as? Double {
-                self.engine.resetToValue(newValue)
-            } else {
-                print("Failed: userInfo \(userInfo) error \(error)")
-            }
-        })
+//        WKInterfaceController.openParentApplication(["request": "value"], reply: { (userInfo, error) -> Void in
+//            if let newValue = userInfo["value"] as? Double {
+//                self.engine.resetToValue(newValue)
+//            } else {
+//                print("Failed: userInfo \(userInfo) error \(error)")
+//            }
+//        })
     }
 
     func buttonPressed(button: String) {
         engine.handleButton(button)
 
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { [weak self]() -> Void in
-            if let strongSelf = self {
-                WKInterfaceController.openParentApplication(["request": "newValue", "value": strongSelf.engine.value], reply: { (userInfo, error) -> Void in
-                    print("userInfo \(userInfo) error \(error)")
-                })
-                strongSelf.updateUserActivity("com.robertdiamond.watchscicalc.value", userInfo: ["value": strongSelf.engine.value], webpageURL: nil)
-
-                strongSelf.sharedDefaults?.setDouble(strongSelf.engine.value, forKey: "value")
-                strongSelf.sharedDefaults?.synchronize()
-            }
-        })
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { [weak self]() -> Void in
+//            if let strongSelf = self {
+//                WKInterfaceController.openParentApplication(["request": "newValue", "value": strongSelf.engine.value], reply: { (userInfo, error) -> Void in
+//                    print("userInfo \(userInfo) error \(error)")
+//                })
+//                strongSelf.updateUserActivity("com.robertdiamond.watchscicalc.value", userInfo: ["value": strongSelf.engine.value], webpageURL: nil)
+//
+//                strongSelf.sharedDefaults?.setDouble(strongSelf.engine.value, forKey: "value")
+//                strongSelf.sharedDefaults?.synchronize()
+//            }
+//        })
     }
 
     func valueChanged(newValue: Double) {
-        for (var label) in InterfaceController.allValueLabels {
+        for label in InterfaceController.allValueLabels {
                 label.setText(engine.operand)
         }
     }

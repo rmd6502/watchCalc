@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WatchConnectivity
 
 class CalculatorViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CalcEngineDelegate, UITableViewDataSource, UITableViewDelegate {
     var valueLabel : UILabel?

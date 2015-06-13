@@ -258,8 +258,6 @@ class CalcEngine {
             memoryValue += value
         case .Mminus:
             memoryValue -= value
-        default:
-            break
         }
         register.append(CalcRegister(op1: value, op2: nil, result: value, operation: operation.rawValue))
         valueStack.extend([value])
@@ -312,8 +310,6 @@ class CalcEngine {
             result = pow(v1, v2)
         case .exponent:
             result = v1 * pow(10.0,v2)
-        default:
-            result = 0
         }
         register.append(CalcRegister(op1: v1, op2: v2, result: result, operation: op.rawValue))
         return result
