@@ -207,7 +207,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
             if button == "Register" {
                 UIView.animateWithDuration(0.25, animations: { () -> Void in
                     self.displayHeight = (self.displayHeight == self.displayOpenHeight) ? self.displayClosedHeight : self.displayOpenHeight
-                    self.registerTable?.alpha = (self.displayHeight == self.displayOpenHeight) ? 0.0 : 1.0
+                    self.registerTable?.alpha = (self.displayHeight == self.displayOpenHeight) ? 1.0 : 0.0
                     var bounds = self.displayHeader.frame
                     bounds.size.height = self.displayHeight
                     self.displayHeader.frame = bounds
@@ -266,6 +266,9 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
 
     func valueChanged(newValue: Double) {
         valueLabel?.text = engine.operand
+        if self.displayHeight == self.displayOpenHeight {
+            self.registerTable?.reloadData()
+        }
     }
 
     func memoryChanged(newValue: Double) {
