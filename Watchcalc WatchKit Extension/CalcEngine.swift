@@ -278,7 +278,7 @@ class CalcEngine {
         if let lastOperator = lastOp, precedence = precedences[lastOperator] {
             lastOpPrec = precedence
         }
-        print("operators \(self.operatorStack) values \(self.valueStack) lastOp \(lastOp)")
+        //println("operators \(self.operatorStack) values \(self.valueStack) lastOp \(lastOp)")
         while operatorStack.count > 0 && valueStack.count > 1 {
             let op = operatorStack.last!
             if let precedence = precedences[op] {

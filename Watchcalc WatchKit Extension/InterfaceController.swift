@@ -10,11 +10,12 @@ import WatchConnectivity
 import WatchKit
 import Foundation
 
-class InterfaceController: WKInterfaceController, CalcEngineDelegate, WCSessionDelegate {
+class InterfaceController: WKInterfaceController, CalcEngineDelegate, WCSessionDelegate, ValueDisplay {
     weak var tableView: WKInterfaceTable!
     weak var valueLabel : WKInterfaceLabel?
 
-    static var allValueLabels : [WKInterfaceLabel] = []
+    weak var extensionDelegate : ExtensionDelegate!
+
     var engine : CalcEngine
     var keyBindings : [[String]]!
     let notificationCenter = DarwinNotificationCenter()
@@ -38,11 +39,7 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate, WCSessionD
                 valueRow.valueLabel.setText(engine.operand)
                 valueRow.mainGroup?.setWidth(self.contentFrame.width)
                 valueLabel = valueRow.valueLabel
-                if valueLabel != nil {
-                    InterfaceController.allValueLabels.append(valueLabel!)
-                }
             case let buttonRow as ButtonRow:
-                print("key \(self.keyBindings[buttonIdx])")
                 buttonRow.mainGroup?.setWidth(self.contentFrame.width)
                 buttonRow.keys = self.keyBindings[buttonIdx++]
                 buttonRow.buttonWidth = buttonWidth
@@ -61,6 +58,11 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate, WCSessionD
             engine.memoryValue = storedValue
         }
         engine.delegate = self
+
+        if let extDelegate = WKExtension.sharedExtension().delegate as? ExtensionDelegate {
+            self.extensionDelegate = extDelegate
+            self.extensionDelegate.registerValueDisplay(self)
+        }
     }
 
     override func willActivate() {
@@ -70,9 +72,13 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate, WCSessionD
     }
 
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+        valueLabel?.setText(nil)
         notificationCenter.removeObserver(self)
+    }
+
+    func updateValue(value: Double) {
+        
     }
 
     func resetValue(userInfo : [NSObject : AnyObject]?)
@@ -103,9 +109,7 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate, WCSessionD
     }
 
     func valueChanged(newValue: Double) {
-        for label in InterfaceController.allValueLabels {
-                label.setText(engine.operand)
-        }
+        self.extensionDelegate.updateAllDisplays(newValue)
     }
 
     func memoryChanged(newValue: Double) {
