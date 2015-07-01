@@ -6,11 +6,10 @@
 //  Copyright (c) 2015 Robert Diamond. All rights reserved.
 //
 
-import WatchConnectivity
 import WatchKit
 import Foundation
 
-class InterfaceController: WKInterfaceController, CalcEngineDelegate, WCSessionDelegate, ValueDisplay {
+class InterfaceController: WKInterfaceController, CalcEngineDelegate, ValueDisplay {
     weak var tableView: WKInterfaceTable!
     weak var valueLabel : WKInterfaceLabel?
 
@@ -29,14 +28,13 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate, WCSessionD
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         engine.allClear()
-        WCSession.defaultSession().delegate = self
         tableView.setRowTypes(["ValueRow", "ButtonRow", "ButtonRow", "ButtonRow", "ButtonRow","ButtonRow"])
         var buttonIdx = 0
         let buttonWidth = (self.contentFrame.width - 16.0) / 4.0
         for (var rowNum = 0; rowNum < tableView.numberOfRows; ++rowNum) {
             switch tableView.rowControllerAtIndex(rowNum) {
             case let valueRow as ValueRow:
-                valueRow.valueLabel.setText(engine.operand)
+                valueRow.valueLabel.setText(engine.operandFormatted)
                 valueRow.mainGroup?.setWidth(self.contentFrame.width)
                 valueLabel = valueRow.valueLabel
             case let buttonRow as ButtonRow:
@@ -63,10 +61,12 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate, WCSessionD
             self.extensionDelegate = extDelegate
             self.extensionDelegate.registerValueDisplay(self)
         }
+
+        valueLabel?.setText(engine.operandFormatted)
     }
 
     override func willActivate() {
-        valueLabel?.setText(engine.operand)
+        valueLabel?.setText(engine.operandFormatted)
         super.willActivate()
         notificationCenter.addObserver(self, selector: "resetValue:", name: "button", userInfo: nil)
     }
@@ -78,7 +78,7 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate, WCSessionD
     }
 
     func updateValue(value: Double) {
-        
+        valueLabel?.setText(engine.operandFormatted)
     }
 
     func resetValue(userInfo : [NSObject : AnyObject]?)

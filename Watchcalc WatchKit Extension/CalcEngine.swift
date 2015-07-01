@@ -54,9 +54,8 @@ struct CalcRegister {
 
 class CalcEngine {
     var value = 0.0 {
-        willSet(newValue) {
-            operand = String(format: valueFormat, valueDigits, newValue)
-            self.delegate?.valueChanged?(newValue)
+        didSet {
+            self.delegate?.valueChanged?(self.value)
         }
     }
     var memoryValue = 0.0 {
@@ -64,6 +63,11 @@ class CalcEngine {
             if memoryValue != newValue {
                 self.delegate?.memoryChanged?(newValue)
             }
+        }
+    }
+    var operandFormatted : String {
+        get {
+            return String(format: valueFormat, valueDigits, self.value)
         }
     }
 
@@ -164,7 +168,7 @@ class CalcEngine {
         }
         operand += button
         let savedOperand = self.operand
-        value = atof(self.operand.cStringUsingEncoding(NSUTF8StringEncoding)!)
+        self.value = atof(self.operand.cStringUsingEncoding(NSUTF8StringEncoding)!)
         operand = savedOperand
         while operand.hasPrefix("0") && operand.characters.count > 1 {
             operand.removeAtIndex(operand.startIndex)
