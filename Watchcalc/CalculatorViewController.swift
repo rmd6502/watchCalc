@@ -31,7 +31,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
 
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         sharedDefaults = NSUserDefaults(suiteName: "group.com.robertdiamond.watchscicalc")
         if let storedValue = sharedDefaults?.doubleForKey("value") {
@@ -265,7 +265,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
     }
 
     func valueChanged(newValue: Double) {
-        valueLabel?.text = engine.operand
+        valueLabel?.text = engine.operandFormatted
         if self.displayHeight == self.displayOpenHeight {
             self.registerTable?.reloadData()
         }
