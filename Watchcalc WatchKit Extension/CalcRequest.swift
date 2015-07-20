@@ -29,6 +29,13 @@ class CalcRequest : NSObject, WCSessionDelegate {
         }
     }
 
+    func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject])
+    {
+        if let value = userInfo["value"] as? Double {
+            CalcEngine.sharedCalcEngine().resetToValue(value)
+        }
+    }
+
     // MARK: Session Delegate
     func session(session: WCSession, didFinishUserInfoTransfer userInfoTransfer: WCSessionUserInfoTransfer, error: NSError?)
     {
