@@ -8,13 +8,12 @@
 
 import Foundation
 import WatchKit
-import WatchConnectivity
 
 protocol ValueDisplay {
     func updateValue(value : Double)
 }
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
+class ExtensionDelegate: NSObject, WKExtensionDelegate {
     var valueDisplays : [ValueDisplay] = []
 
     func registerValueDisplay(display : ValueDisplay)
@@ -27,16 +26,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
         for display in self.valueDisplays {
             display.updateValue(value)
         }
-    }
-
-    func applicationDidFinishLaunching() {
-        WCSession.defaultSession().delegate = self
-        WCSession.defaultSession().activateSession()
-    }
-
-    func session(session: WCSession, didReceiveMessage message: [String : AnyObject])
-    {
-        
     }
 
     func applicationDidBecomeActive() {

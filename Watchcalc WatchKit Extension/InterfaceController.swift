@@ -17,7 +17,6 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate, ValueDispl
 
     var engine : CalcEngine
     var keyBindings : [[String]]!
-    let notificationCenter = DarwinNotificationCenter()
     var sharedDefaults : NSUserDefaults!
 
     override init() {
@@ -68,13 +67,11 @@ class InterfaceController: WKInterfaceController, CalcEngineDelegate, ValueDispl
     override func willActivate() {
         valueLabel?.setText(engine.operandFormatted)
         super.willActivate()
-        notificationCenter.addObserver(self, selector: "resetValue:", name: "button", userInfo: nil)
     }
 
     override func didDeactivate() {
         super.didDeactivate()
         valueLabel?.setText(nil)
-        notificationCenter.removeObserver(self)
     }
 
     func updateValue(value: Double) {

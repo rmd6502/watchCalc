@@ -54,33 +54,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
 
-    func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: ([NSObject : AnyObject]?) -> Void) {
-        if let request = userInfo?["request"] as? String {
-            switch request {
-            case "newValue":
-                if let calcVC = self.window?.rootViewController as? CalculatorViewController, newValue = userInfo?["value"] as? Double {
-                    calcVC.resetToValue(newValue)
-                    reply(["success": true])
-                    return
-                }
-            case "value":
-                if let calcVC = self.window?.rootViewController as? CalculatorViewController {
-                    reply(["success": true, "value": calcVC.engine.value])
-                    return
-                }
-            case "appendRegister":
-                if let calcVC = self.window?.rootViewController as? CalculatorViewController {
-                    if let op1 = userInfo?["op1"] as? Double, op2 = userInfo?["op2"] as? Double?, result = userInfo?["result"] as? Double, operation = userInfo?["operation"] as? String {
-                        calcVC.engine.register.append(CalcRegister(op1: op1, op2: op2, result: result, operation: operation))
-                    }
-                    reply(["success": true, "value": calcVC.engine.value])
-                    return
-                }
-            default:
-                break
-            }
-        }
-        reply(["success": false])
-    }
 }
 

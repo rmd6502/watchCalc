@@ -10,7 +10,6 @@
 		9C06D1A71B0008E800160A7E /* CalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C06D1A61B0008E800160A7E /* CalcEngine.swift */; };
 		9C1F82CC1B2D41530035532F /* WKExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1F82CB1B2D41530035532F /* WKExtensionDelegate.swift */; };
 		9C2815DB1B042D4F00C163E5 /* CalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C06D1A61B0008E800160A7E /* CalcEngine.swift */; };
-		9C2815DE1B058D0500C163E5 /* DarwinNotificationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2815DD1B058D0500C163E5 /* DarwinNotificationUtilities.m */; };
 		9C39CC3A1B2FAA4900ED1BC7 /* uitestcase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C39CC391B2FAA4900ED1BC7 /* uitestcase.swift */; };
 		9C3DA21A1B26700F002983F9 /* Watchcalc WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9C61DD0E1AF9B2BD005896A8 /* Watchcalc WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9C3DA21D1B26700F002983F9 /* Watchcalc WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9C61DD1B1AF9B2BD005896A8 /* Watchcalc WatchKit App.app */; };
@@ -29,6 +28,7 @@
 		9C61DD341AF9B43F005896A8 /* ValueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DD331AF9B43F005896A8 /* ValueRow.swift */; };
 		9C61DD361AFAE6D3005896A8 /* BasicInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DD351AFAE6D3005896A8 /* BasicInterface.swift */; };
 		9C61DD381AFAE6E5005896A8 /* ScientificInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61DD371AFAE6E5005896A8 /* ScientificInterface.swift */; };
+		9C8FCEA91B600EEF00B1124D /* CalcRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E257A1B44784100D51F9A /* CalcRequest.swift */; };
 		9C9E257B1B44784100D51F9A /* CalcRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E257A1B44784100D51F9A /* CalcRequest.swift */; };
 		9CA462FC1B02CADA0041429A /* CalculatorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA462FB1B02CADA0041429A /* CalculatorButton.swift */; };
 		9CA462FD1B02D2410041429A /* CalcEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C06D1A61B0008E800160A7E /* CalcEngine.swift */; };
@@ -84,10 +84,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9C06D1A61B0008E800160A7E /* CalcEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcEngine.swift; sourceTree = "<group>"; };
+		9C06D1A61B0008E800160A7E /* CalcEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalcEngine.swift; path = "Watchcalc WatchKit Extension/CalcEngine.swift"; sourceTree = "<group>"; };
 		9C1F82CB1B2D41530035532F /* WKExtensionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKExtensionDelegate.swift; sourceTree = "<group>"; };
-		9C2815DC1B058D0500C163E5 /* DarwinNotificationUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarwinNotificationUtilities.h; sourceTree = "<group>"; };
-		9C2815DD1B058D0500C163E5 /* DarwinNotificationUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarwinNotificationUtilities.m; sourceTree = "<group>"; };
 		9C2815DF1B058D3800C163E5 /* WatchCalc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WatchCalc-Bridging-Header.h"; sourceTree = "<group>"; };
 		9C39CC391B2FAA4900ED1BC7 /* uitestcase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = uitestcase.swift; sourceTree = "<group>"; };
 		9C61DCE51AF9B2AB005896A8 /* watchscicalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchscicalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,7 +112,7 @@
 		9C61DD331AF9B43F005896A8 /* ValueRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueRow.swift; sourceTree = "<group>"; };
 		9C61DD351AFAE6D3005896A8 /* BasicInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicInterface.swift; sourceTree = "<group>"; };
 		9C61DD371AFAE6E5005896A8 /* ScientificInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScientificInterface.swift; sourceTree = "<group>"; };
-		9C9E257A1B44784100D51F9A /* CalcRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcRequest.swift; sourceTree = "<group>"; };
+		9C9E257A1B44784100D51F9A /* CalcRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalcRequest.swift; path = "Watchcalc WatchKit Extension/CalcRequest.swift"; sourceTree = "<group>"; };
 		9CA462F91B01A25D0041429A /* watchscicalc.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = watchscicalc.entitlements; sourceTree = "<group>"; };
 		9CA462FA1B01A26F0041429A /* Watchcalc WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Watchcalc WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		9CA462FB1B02CADA0041429A /* CalculatorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorButton.swift; sourceTree = "<group>"; };
@@ -148,6 +146,7 @@
 		9C61DCDC1AF9B2AB005896A8 = {
 			isa = PBXGroup;
 			children = (
+				9C8FCEA81B600ECB00B1124D /* Shared */,
 				9CA462F91B01A25D0041429A /* watchscicalc.entitlements */,
 				9C61DCE71AF9B2AB005896A8 /* Watchcalc */,
 				9C61DCFD1AF9B2AB005896A8 /* WatchcalcTests */,
@@ -211,8 +210,6 @@
 		9C61DD0F1AF9B2BD005896A8 /* Watchcalc WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				9C2815DC1B058D0500C163E5 /* DarwinNotificationUtilities.h */,
-				9C2815DD1B058D0500C163E5 /* DarwinNotificationUtilities.m */,
 				9CA462FA1B01A26F0041429A /* Watchcalc WatchKit Extension.entitlements */,
 				9C61DD131AF9B2BD005896A8 /* InterfaceController.swift */,
 				9C61DD151AF9B2BD005896A8 /* NotificationController.swift */,
@@ -222,9 +219,7 @@
 				9C61DD331AF9B43F005896A8 /* ValueRow.swift */,
 				9C61DD371AFAE6E5005896A8 /* ScientificInterface.swift */,
 				9C61DD351AFAE6D3005896A8 /* BasicInterface.swift */,
-				9C06D1A61B0008E800160A7E /* CalcEngine.swift */,
 				9C1F82CB1B2D41530035532F /* WKExtensionDelegate.swift */,
-				9C9E257A1B44784100D51F9A /* CalcRequest.swift */,
 			);
 			path = "Watchcalc WatchKit Extension";
 			sourceTree = "<group>";
@@ -255,6 +250,15 @@
 				9C61DD211AF9B2BD005896A8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9C8FCEA81B600ECB00B1124D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				9C9E257A1B44784100D51F9A /* CalcRequest.swift */,
+				9C06D1A61B0008E800160A7E /* CalcEngine.swift */,
+			);
+			name = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -433,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CA462FD1B02D2410041429A /* CalcEngine.swift in Sources */,
+				9C8FCEA91B600EEF00B1124D /* CalcRequest.swift in Sources */,
 				9C61DCED1AF9B2AB005896A8 /* CalculatorViewController.swift in Sources */,
 				9CA462FC1B02CADA0041429A /* CalculatorButton.swift in Sources */,
 				9C61DCEB1AF9B2AB005896A8 /* AppDelegate.swift in Sources */,
@@ -453,7 +458,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C2815DE1B058D0500C163E5 /* DarwinNotificationUtilities.m in Sources */,
 				9C61DD161AF9B2BD005896A8 /* NotificationController.swift in Sources */,
 				9C61DD321AF9B433005896A8 /* ButtonRow.swift in Sources */,
 				9C06D1A71B0008E800160A7E /* CalcEngine.swift in Sources */,

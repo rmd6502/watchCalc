@@ -31,7 +31,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
 
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
 
-    required init?(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         sharedDefaults = NSUserDefaults(suiteName: "group.com.robertdiamond.watchscicalc")
         if let storedValue = sharedDefaults?.doubleForKey("value") {

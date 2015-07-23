@@ -92,6 +92,7 @@ class CalcEngine {
     {
         // Does nothing but ensures everyone uses the sharedEngine
         maxRegisterSize = DEFAULT_MAX_REGISTER_SIZE
+        sendValueUpdate()
     }
 
     class func sharedCalcEngine() -> CalcEngine
@@ -115,6 +116,7 @@ class CalcEngine {
             valueStack.removeAtIndex(0)
         }
         mode = .Operand
+        sendValueUpdate()
     }
 
     func allClear()
@@ -133,6 +135,7 @@ class CalcEngine {
         mode = .CalcOperand
         if let lastValue = valueStack.last {
             value = lastValue
+            sendValueUpdate()
         }
     }
 
@@ -150,6 +153,7 @@ class CalcEngine {
         operatorStack.extend([fn])
         if let lastValue = valueStack.last {
             value = lastValue
+            sendValueUpdate()
         }
     }
 
@@ -173,6 +177,7 @@ class CalcEngine {
         while operand.hasPrefix("0") && operand.characters.count > 1 {
             operand.removeAtIndex(operand.startIndex)
         }
+        sendValueUpdate()
     }
 
     func handleEqual()
@@ -186,6 +191,7 @@ class CalcEngine {
         operatorStack = []
         sign = 1
         mode = .CalcOperand
+        sendValueUpdate()
     }
 
     func doClear()
@@ -201,6 +207,7 @@ class CalcEngine {
     {
         value = atof(operand.cStringUsingEncoding(NSUTF8StringEncoding)!)
         valueStack.extend([value])
+        sendValueUpdate()
     }
 
     func resetToValue(newValue : Double)
@@ -265,6 +272,8 @@ class CalcEngine {
         }
         register.append(CalcRegister(op1: value, op2: nil, result: value, operation: operation.rawValue))
         valueStack.extend([value])
+        sendValueUpdate()
+        sendRegisterUpdate()
     }
 
     func fact(value : Double) -> Double
@@ -316,6 +325,7 @@ class CalcEngine {
             result = v1 * pow(10.0,v2)
         }
         register.append(CalcRegister(op1: v1, op2: v2, result: result, operation: op.rawValue))
+        sendRegisterUpdate()
         return result
     }
 
@@ -344,4 +354,16 @@ class CalcEngine {
         return true
     }
 
+    // MARK: communication
+    func sendValueUpdate()
+    {
+        CalcRequest.sharedCalcRequest().sendValue(self.value)
+    }
+
+    func sendRegisterUpdate()
+    {
+        if let lastEntry = self.register.last {
+            CalcRequest.sharedCalcRequest().sendRegisterEntry(lastEntry)
+        }
+    }
 }
