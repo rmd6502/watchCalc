@@ -9,6 +9,7 @@
 import Foundation
 import WatchConnectivity
 
+@available(iOS 9.0, *)
 class CalcRequest : NSObject, WCSessionDelegate {
     let session = WCSession.defaultSession()
 
@@ -30,6 +31,9 @@ class CalcRequest : NSObject, WCSessionDelegate {
     // MARK: Requests
     func sendValue(value: Double)
     {
+        if (!session.reachable) {
+            return
+        }
         session.sendMessage(["request": "newValue", "value":value], replyHandler: { (reply) -> Void in
             print("Got reply: \(reply)")
         }) { (error) -> Void in
@@ -39,6 +43,9 @@ class CalcRequest : NSObject, WCSessionDelegate {
 
     func sendRegisterEntry(entry: CalcRegister)
     {
+        if (!session.reachable) {
+            return
+        }
         var message : [String : AnyObject] = ["request": "appendRegister", "op1": entry.op1, "result": entry.result, "operation": entry.operation]
         if (entry.op2 != nil) {
             message["op2"] = entry.op2

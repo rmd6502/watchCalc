@@ -9,6 +9,7 @@
 import UIKit
 import WatchConnectivity
 
+@available(iOS 9.0, *)
 class CalculatorViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CalcEngineDelegate, UITableViewDataSource, UITableViewDelegate {
     var valueLabel : UILabel?
     var registerTable : UITableView?
@@ -31,7 +32,7 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
 
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         sharedDefaults = NSUserDefaults(suiteName: "group.com.robertdiamond.watchscicalc")
         if let storedValue = sharedDefaults?.doubleForKey("value") {

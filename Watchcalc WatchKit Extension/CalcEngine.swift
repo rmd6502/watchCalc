@@ -52,6 +52,7 @@ struct CalcRegister {
     var operation : String  // MonomialObject or BinomialObject
 }
 
+@available(iOS 9.0, *)
 class CalcEngine {
     var value = 0.0 {
         didSet {

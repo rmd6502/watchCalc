@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
