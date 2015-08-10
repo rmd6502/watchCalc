@@ -34,11 +34,7 @@ class CalcRequest : NSObject, WCSessionDelegate {
         if (!session.reachable) {
             return
         }
-        session.sendMessage(["request": "newValue", "value":value], replyHandler: { (reply) -> Void in
-            print("Got reply: \(reply)")
-        }) { (error) -> Void in
-            print("Received Error: \(error)")
-        }
+        session.transferUserInfo(["request": "newValue", "value":value])
     }
 
     func sendRegisterEntry(entry: CalcRegister)
@@ -50,11 +46,7 @@ class CalcRequest : NSObject, WCSessionDelegate {
         if (entry.op2 != nil) {
             message["op2"] = entry.op2
         }
-        session.sendMessage(message, replyHandler: { (result) -> Void in
-            print("Got reply: \(result)")
-        }) { (error) -> Void in
-            print("Received Error: \(error)")
-        }
+        session.transferUserInfo(message)
     }
 
     func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject])

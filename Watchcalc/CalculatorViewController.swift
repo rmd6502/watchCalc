@@ -102,6 +102,9 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
             self.registerTable = headerView.registerTable
             self.registerTable?.dataSource = self
             self.registerTable?.delegate = self
+            // TODO: Why don't these settings apply from the storyboard?
+            self.registerTable?.separatorStyle = .None
+            self.registerTable?.backgroundColor = headerView.backgroundColor
             return headerView
         } else {
             return UICollectionReusableView()
@@ -220,8 +223,8 @@ class CalculatorViewController: UICollectionViewController, UICollectionViewDele
                 })
             } else {
                 engine.handleButton(button)
-                let name : CFStringRef! = "button"
-                CFNotificationCenterPostNotification(darwinNotificationCenter, name, nil, nil, Boolean(1))
+                //let name : CFStringRef! = "button"
+                //CFNotificationCenterPostNotification(darwinNotificationCenter, name, UnsafePointer<Void>(nil), nil, 1)
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
                     self.sharedDefaults?.setDouble(self.engine.value, forKey: "value")
                     self.sharedDefaults?.synchronize()

@@ -9,6 +9,7 @@
 import UIKit
 import XCTest
 
+@available(iOS 9.0, *)
 class WatchcalcTests: XCTestCase {
     var engine = CalcEngine.sharedCalcEngine()
 
