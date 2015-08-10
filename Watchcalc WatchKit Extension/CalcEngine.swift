@@ -56,6 +56,7 @@ struct CalcRegister {
 class CalcEngine {
     var value = 0.0 {
         didSet {
+            print("set value \(self.value)")
             self.delegate?.valueChanged?(self.value)
         }
     }
@@ -117,7 +118,6 @@ class CalcEngine {
             valueStack.removeAtIndex(0)
         }
         mode = .Operand
-        sendValueUpdate()
     }
 
     func allClear()
@@ -202,6 +202,7 @@ class CalcEngine {
         } else {
             allClear()
         }
+        sendValueUpdate()
     }
 
     func pushValue()
